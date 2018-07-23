@@ -21,5 +21,5 @@ void setup() {
         		point(x,y,fn(x,y));
 	        }
         }
-
+	save("cosx_x.png");
 }

@@ -25,4 +25,5 @@ void draw() {
 	for(float len=600; len>0; len-=2){
 		linePolar(90.2, len);
 	}
+	save("flower.png");
 }
