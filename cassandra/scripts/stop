@@ -1,0 +1,4 @@
+#!/bin/bash
+
+PID=$(pgrep -f cassandra)
+[ -n "$PID" ] && { echo Killing $PID...; kill $PID; echo Done.; }

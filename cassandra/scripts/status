@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ps --no-headers -faxwwo "pid,ppid,%cpu,%mem,args"|sed -r "s/(^.*java) .*(.{120})/\1 ... \2/g"|grep cassandra|grep -v grep
