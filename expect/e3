@@ -1,0 +1,8 @@
+#!/usr/bin/expect -f
+spawn su -
+expect "assword: "
+sleep 1
+send "mypassword\r"
+sleep 1
+send "cat /etc/issue.net\r"
+interact

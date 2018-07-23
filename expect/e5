@@ -1,0 +1,19 @@
+#!/usr/bin/expect -f
+send_user "Please run server.tcp.22222 before."
+spawn nc 127.0.0.1 22222
+
+set CTRLY \031
+interact {
+	-reset $CTRLY {exec kill -STOP [pid]}
+	\001   {send_user "Este escribió control-A\n";
+		send "Ese escribió ^a\n"
+		}
+	$      {send_user "The date is [clock format [clock seconds]]."}
+	\003   exit
+	foo    {send_user "bar"}
+	\r	{
+		send "barza\n"
+		}
+	~~
+}
+send_user "OK."

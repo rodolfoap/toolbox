@@ -1,0 +1,8 @@
+*.o
+*.so
+*.so.*
+*.a
+str_test
+split_test
+memory_test
+jansson_test

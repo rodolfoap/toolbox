@@ -1,0 +1,11 @@
+See http://www.javabeat.net/introduction-to-google-guice/
+Run AddClient
+
+Libraries to include:
+
+/opt/luna/plugins/org.eclipse.jface_3.10.2.v20141021-1035.jar
+/opt/luna/plugins/org.eclipse.swt_3.103.2.v20150203-1313.jar
+/opt/luna/plugins/org.eclipse.swt.gtk.linux.x86_64_3.103.2.v20150203-1351.jar
+/opt/luna/plugins/com.google.inject_3.0.0.v201312141243.jar
+/opt/luna/plugins/javax.inject_1.0.0.v20091030.jar
+

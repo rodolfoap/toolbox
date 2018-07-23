@@ -1,0 +1,9 @@
+#!/usr/bin/expect -f
+spawn /usr/bin/vncpasswd
+expect "assword"
+interact {
+	\r	{
+		send "\n"
+		}
+}
+send_user "OK.\n"

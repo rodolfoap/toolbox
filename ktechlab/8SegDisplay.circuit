@@ -1,0 +1,47 @@
+<!DOCTYPE KTechlab>
+<document type="circuit" >
+ <item x="300" y="220" z="4" type="ec/bcd_to_seven_segment" id="bcd_to_seven_segment" flip="0" angle="0" />
+ <item x="228" y="244" z="5" type="ec/battery" id="cell" flip="0" angle="0" >
+  <data value="5" type="number" id="voltage" />
+ </item>
+ <item x="196" y="324" z="7" type="ec/ground" id="ground" flip="0" angle="270" />
+ <item x="444" y="324" z="8" type="ec/ground" id="ground__90" flip="0" angle="270" />
+ <item x="180" y="108" z="0" type="ec/logic_input" id="logic_input" flip="0" angle="0" >
+  <data value="1" type="bool" id="useToggle" />
+  <button id="button" state="1" />
+ </item>
+ <item x="180" y="180" z="3" type="ec/logic_input" id="logic_input__11" flip="0" angle="0" >
+  <data value="1" type="bool" id="useToggle" />
+  <button id="button" state="1" />
+ </item>
+ <item x="180" y="132" z="1" type="ec/logic_input" id="logic_input__3" flip="0" angle="0" >
+  <data value="1" type="bool" id="useToggle" />
+  <button id="button" state="1" />
+ </item>
+ <item x="180" y="156" z="2" type="ec/logic_input" id="logic_input__7" flip="0" angle="0" >
+  <data value="1" type="bool" id="useToggle" />
+  <button id="button" state="1" />
+ </item>
+ <item x="444" y="252" z="6" type="ec/seven_segment" id="seven_segment" flip="0" angle="0" >
+  <data value="Common Cathode" type="string" id="diode-polarity" />
+  <data value="#4cc308" type="color" id="0-color" />
+ </item>
+ <connector start-node-is-child="1" manual-route="0" end-node-parent="bcd_to_seven_segment" route="24,13,25,13,26,13,27,13,28,13,29,13,30,13,31,13,31,14,31,15,31,16,31,17,31,18,31,19,31,20,32,20,33,20," end-node-cid="A" start-node-parent="logic_input" start-node-cid="p1" id="connector" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="0" end-node-parent="bcd_to_seven_segment" route="24,16,25,16,26,16,27,16,28,16,29,16,29,17,29,18,29,19,29,20,29,21,29,22,30,22,31,22,32,22,33,22," end-node-cid="B" start-node-parent="logic_input__3" start-node-cid="p1" id="connector__55" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="0" end-node-parent="bcd_to_seven_segment" route="24,19,25,19,26,19,27,19,27,20,27,21,27,22,27,23,27,24,28,24,29,24,30,24,31,24,32,24,33,24," end-node-cid="C" start-node-parent="logic_input__7" start-node-cid="p1" id="connector__56" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="0" end-node-parent="bcd_to_seven_segment" route="24,22,25,22,25,23,25,24,25,25,25,26,26,26,27,26,28,26,29,26,30,26,31,26,32,26,33,26," end-node-cid="D" start-node-parent="logic_input__11" start-node-cid="p1" id="connector__57" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="0" end-node-parent="bcd_to_seven_segment" route="30,30,31,30,32,30,33,30," end-node-cid="lt" start-node-parent="cell" start-node-cid="p1" id="connector__62" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="1" end-node-parent="bcd_to_seven_segment" route="33,30,33,31,33,32," end-node-cid="rb" start-node-parent="bcd_to_seven_segment" start-node-cid="lt" id="connector__63" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="1" end-node-id="node1" route="33,34,32,34,31,34,30,34,29,34,28,34,27,34,26,34,25,34,24,34," start-node-parent="bcd_to_seven_segment" start-node-cid="en" id="connector__85" end-node-is-child="0" />
+ <connector start-node-is-child="1" manual-route="1" end-node-id="node1" route="26,30,25,30,24,30,24,31,24,32,24,33,24,34," start-node-parent="cell" start-node-cid="n1" id="connector__86" end-node-is-child="0" />
+ <connector start-node-is-child="0" manual-route="1" start-node-id="node1" end-node-parent="ground" route="24,34,24,35,24,36,24,37,24,38," end-node-cid="p1" id="connector__87" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="0" end-node-parent="ground__90" route="55,37,55,38," end-node-cid="p1" start-node-parent="seven_segment" start-node-cid="-v" id="connector__92" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="1" end-node-parent="seven_segment" route="41,28,42,28,43,28,44,28,45,28,46,28,47,28,48,28,49,28,50,28," end-node-cid="g" start-node-parent="bcd_to_seven_segment" start-node-cid="g" id="connector__93" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="1" end-node-parent="seven_segment" route="41,30,42,30,43,30,44,30,45,30,46,30,47,30,48,30,49,30,50,30," end-node-cid="f" start-node-parent="bcd_to_seven_segment" start-node-cid="f" id="connector__94" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="1" end-node-parent="seven_segment" route="41,32,42,32,43,32,44,32,45,32,46,32,47,32,48,32,49,32,50,32," end-node-cid="e" start-node-parent="bcd_to_seven_segment" start-node-cid="e" id="connector__95" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="1" end-node-parent="seven_segment" route="41,34,40,34,41,34,42,34,43,34,44,34,45,34,46,34,47,34,48,34,49,34,50,34," end-node-cid="d" start-node-parent="bcd_to_seven_segment" start-node-cid="d" id="connector__96" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="1" end-node-parent="seven_segment" route="41,24,42,24,43,24,44,24,45,24,46,24,47,24,48,24,49,24,50,24,51,24,52,24,53,24,54,24,55,24,56,24,57,24,58,24,59,24,60,24,61,24,61,25,61,26,61,27,61,28,60,28," end-node-cid="a" start-node-parent="bcd_to_seven_segment" start-node-cid="a" id="connector__97" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="1" end-node-parent="seven_segment" route="41,22,40,22,41,22,42,22,43,22,44,22,45,22,46,22,47,22,48,22,49,22,50,22,51,22,52,22,53,22,54,22,55,22,56,22,57,22,58,22,59,22,60,22,61,22,62,22,63,22,63,23,63,24,63,25,63,26,63,27,63,28,63,29,63,30,62,30,61,30,60,30," end-node-cid="b" start-node-parent="bcd_to_seven_segment" start-node-cid="b" id="connector__98" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="1" end-node-parent="seven_segment" route="41,20,42,20,43,20,44,20,45,20,46,20,47,20,48,20,49,20,50,20,51,20,52,20,53,20,54,20,55,20,56,20,57,20,58,20,59,20,60,20,61,20,62,20,63,20,64,20,65,20,65,21,65,22,65,23,65,24,65,25,65,26,65,27,65,28,65,29,65,30,65,31,65,32,64,32,63,32,62,32,61,32,60,32," end-node-cid="c" start-node-parent="bcd_to_seven_segment" start-node-cid="c" id="connector__99" end-node-is-child="1" />
+ <node x="196" y="276" id="node1" />
+</document>

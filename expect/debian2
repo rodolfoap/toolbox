@@ -1,0 +1,14 @@
+#!/usr/bin/expect 
+set timeout 1
+spawn ssh root@192.168.122.141
+expect {
+	eof { send_user "\nNO OPEN PORT: Exiting. \n"; exit; }
+	"yes/no" { send "yes\n"; exp_continue; }
+	"assword" { after 100; }
+}
+send [lindex $argv 0]
+send "\n"
+expect { "#" {} "$" {} ">" {} }
+send "ls -l /; \n"
+interact eof
+send_user "\nFINISHED.\n"

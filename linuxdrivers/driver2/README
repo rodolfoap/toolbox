@@ -1,0 +1,65 @@
+1. Make creates the kernel module and the client
+
+# make
+make -C /usr/src/kernels/2.6.32.11-99.fc12.i686 M=/root/driver2 modules
+make[1]: Entering directory `/usr/src/kernels/2.6.32.11-99.fc12.i686'
+  CC [M]  /root/driver2/module.o
+  Building modules, stage 2.
+  MODPOST 1 modules
+  CC      /root/driver2/module.mod.o
+  LD [M]  /root/driver2/module.ko
+make[1]: Leaving directory `/usr/src/kernels/2.6.32.11-99.fc12.i686'
+gcc uspace.c -o uspace
+
+2. "make test" tests the module loading:
+
+[rodolfoap] /root/driver2 # make test
+
+insmod module.ko
+
+dmesg -c
+Test: Called: rapmod_init.
+Test: rapmod_init: module registered.
+
+modinfo module.ko
+filename:       module.ko
+license:        GPL
+srcversion:     D4B9782E1BAA7C73830ACD4
+depends:        
+vermagic:       2.6.32.11-99.fc12.i686 SMP mod_unload 686 
+
+rm -fv /dev/ppio
+mknod -m 0666 /dev/ppio c 22 0
+ls -l /dev/ppio
+crw-rw-rw- 1 root root 22, 0 15. Apr 13:48 /dev/ppio
+
+dmesg -c
+
+3. Now, lets test the module from userland:
+
+[rodolfoap] /root/driver2 # make utest
+
+./uspace
+Value : 0x04
+dmesg -c
+Test: Called: pp_open.
+Test: Called: pp_write.
+Test: Called: pp_read.
+Test: Called: pp_release.
+
+4. Kernel module unloading:
+
+[rodolfoap] /root/driver2 # make clean
+
+make -C /lib/modules/2.6.32.11-99.fc12.i686/build M=/root/driver2 clean
+make[1]: Entering directory `/usr/src/kernels/2.6.32.11-99.fc12.i686'
+  CLEAN   /root/driver2/.tmp_versions
+  CLEAN   /root/driver2/Module.symvers /root/driver2/modules.order
+make[1]: Leaving directory `/usr/src/kernels/2.6.32.11-99.fc12.i686'
+rm -f uspace
+rm -fv /dev/ppio
+„/dev/ppio“ entfernt
+rmmod module.ko
+dmesg -c
+Test: Called: rapmod_exit.
+Test: rapmod_init: module unregistered.

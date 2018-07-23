@@ -1,0 +1,1 @@
+cmd_/root/driver3/module.ko := ld -r -m elf_i386 -T /usr/src/kernels/2.6.32.11-99.fc12.i686/scripts/module-common.lds --build-id -o /root/driver3/module.ko /root/driver3/module.o /root/driver3/module.mod.o

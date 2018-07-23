@@ -1,0 +1,106 @@
+USBMOUSE
+
+dmesg:
+usb 5-1: new low speed USB device using uhci_hcd and address 2
+usb 5-1: New USB device found, idVendor=0458, idProduct=003a
+usb 5-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+usb 5-1: Product: Optical Mouse
+usb 5-1: Manufacturer: Genius
+usb 5-1: configuration #1 chosen from 1 choice
+input: Genius Optical Mouse as /devices/pci0000:00/0000:00:1d.3/usb5/5-1/5-1:1.0/input/input14
+generic-usb 0003:0458:003A.0001: input,hidraw0: USB HID v1.11 Mouse [Genius Optical Mouse] on usb-0000:00:1d.3-1/input0
+
+/var/log/messages
+Apr 20 10:46:08 rodolfoap kernel: usb 5-1: new low speed USB device using uhci_hcd and address 2
+Apr 20 10:46:08 rodolfoap kernel: usb 5-1: New USB device found, idVendor=0458, idProduct=003a
+Apr 20 10:46:08 rodolfoap kernel: usb 5-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+Apr 20 10:46:08 rodolfoap kernel: usb 5-1: Product: Optical Mouse
+Apr 20 10:46:08 rodolfoap kernel: usb 5-1: Manufacturer: Genius
+Apr 20 10:46:08 rodolfoap kernel: usb 5-1: configuration #1 chosen from 1 choice
+Apr 20 10:46:08 rodolfoap kernel: input: Genius Optical Mouse as /devices/pci0000:00/0000:00:1d.3/usb5/5-1/5-1:1.0/input/input14
+Apr 20 10:46:08 rodolfoap kernel: generic-usb 0003:0458:003A.0001: input,hidraw0: USB HID v1.11 Mouse [Genius Optical Mouse] on usb-0000:00:1d.3-1/input0
+
+0458  KYE Systems Corp. (Mouse Systems)
+	0001  Mouse
+	0002  Genius NetMouse Pro
+	0003  Genius NetScroll+
+        ...
+	003a  NetScroll+ Mini Traveler
+
+
+USB device number mappings
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 13 char	Input drivers
+		  0 = /dev/input/js0	First joystick
+		  1 = /dev/input/js1	Second joystick 
+		    ...
+		 32 = /dev/input/mouse0	First mouse 
+		 33 = /dev/input/mouse1 Second mouse
+		    ...
+		 63 = /dev/input/mice	Mixed input from all mice
+		 64 = /dev/input/event0 First event stream
+		 65 = /dev/input/event1 Second event stream
+		    ...
+		The current input system is used for USB devices only, however,
+		it isn't limited just to those, and hopefully will be the way
+		to access all input devices in the future.
+
+166 char	ACM USB modems
+		  0 = /dev/ttyACM0	First ACM modem
+		  1 = /dev/ttyACM1	Second ACM modem
+		    ...
+
+180 char	USB devices
+		  0 = /dev/usb/lp0	First USB printer
+		    ...
+		 15 = /dev/usb/lp15	16th USB printer
+		 32 = /dev/usb/mdc800	MDC800 USB camera
+		 48 = /dev/usb/scanner0	First USB scanner
+		    ...
+		 63 = /dev/usb/scanner15 16th USB scanner
+		 64 = /dev/usb/rio500	Diamond Rio 500
+		 96 = /dev/usb/hiddev0	1st USB HID device
+		    ...
+		111 = /dev/usb/hiddev15	16th USB HID device
+		112 = /dev/usb/auer0	1st auerswald ISDN device
+		    ...
+		127 = /dev/usb/auer15	16th auerswald ISDN device
+		128 = /dev/usb/brlvgr0	First Braille Voyager device
+		    ...
+		131 = /dev/usb/brlvgr3	Fourth Braille Voyager device
+		144 = /dev/usb/lcd	USB LCD device
+		240 = /dev/usb/dabusb0	First daubusb device
+		    ...
+		243 = /dev/usb/dabusb3	Fourth dabusb device
+
+188 char	USB serial converters
+		  0 = /dev/ttyUSB0	First USB serial converter
+		  1 = /dev/ttyUSB1	Second USB serial converter
+		    ...
+
+If you want to reserve a USB Minor number, please contact
+Greg Kroah-Hartman <greg@kroah.com>
+
+T:  Bus=05 Lev=01 Prnt=01 Port=01 Cnt=01 Dev#=  3 Spd=1.5 MxCh= 0
+D:  Ver= 1.10 Cls=00(>ifc ) Sub=00 Prot=00 MxPS= 8 #Cfgs=  1
+P:  Vendor=0458 ProdID=003a Rev= 1.00
+S:  Manufacturer=Genius
+S:  Product=Optical Mouse
+C:* #Ifs= 1 Cfg#= 1 Atr=a0 MxPwr=100mA
+I:* If#= 0 Alt= 0 #EPs= 1 Cls=03(HID  ) Sub=01 Prot=02 Driver=usbhid
+E:  Ad=81(I) Atr=03(Int.) MxPS=   4 Ivl=10ms
+
+(**) Genius Optical Mouse: always reports core events
+(**) Genius Optical Mouse: Device: "/dev/input/event14"
+(II) Genius Optical Mouse: Found 3 mouse buttons
+(II) Genius Optical Mouse: Found scroll wheel(s)
+(II) Genius Optical Mouse: Found relative axes
+(II) Genius Optical Mouse: Found x and y relative axes
+(II) Genius Optical Mouse: Configuring as mouse
+(**) Genius Optical Mouse: YAxisMapping: buttons 4 and 5
+(**) Genius Optical Mouse: EmulateWheelButton: 4, EmulateWheelInertia: 10, EmulateWheelTimeout: 200
+(II) XINPUT: Adding extended input device "Genius Optical Mouse" (type: MOUSE)
+(**) Genius Optical Mouse: (accel) keeping acceleration scheme 1
+(**) Genius Optical Mouse: (accel) acceleration profile 0
+(II) Genius Optical Mouse: initialized for relative axes.
+

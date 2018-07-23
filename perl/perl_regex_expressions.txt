@@ -1,0 +1,49 @@
+Metacharacters
+
+char meaning
+^      beginning of string 
+$      end of string 
+.      any character except newline 
+*      match 0 or more times 
++      match 1 or more times 
+?      match 0 or 1 times; or: shortest match 
+|      alternative 
+( )    grouping; "storing" 
+[ ]    set of characters 
+{ }    repetition modifier 
+\      quote or special 
+
+Repetition
+a*     zero or more a's 
+a+     one or more a's 
+a?     zero or one a's (i.e., optional a) 
+a{m}   exactly m a's 
+a{m,}  at least m a's 
+a{m,n} at least m but at most n a's repetition?
+
+ 
+\t     tab 
+\n     newline 
+\r     return (CR) 
+\xhh   character with hex. code hh 
+\b     "word" boundary 
+\B     not a "word" boundary 
+
+
+\w     matches any single character classified as a 
+       "word" character (alphanumeric or _) 
+\W     matches any non-"word" character 
+\s     matches any whitespace character (space, tab, newline) 
+\S     matches any non-whitespace character  
+\d     matches any digit character, equiv. to [0-9] 
+\D     matches any non-digit character 
+
+
+[characters] matches any of the characters in the sequence  
+[x-y]        matches any of the characters from x to y 
+             (inclusively) in the ASCII code  
+[\-]         matches the hyphen character - 
+[\n]         matches the newline; other single character 
+             denotations with  apply normally, too  
+ 
+

@@ -1,0 +1,11 @@
+[ -z "$1" ] && echo "Usage $0 PROGRAMNUMBER" && exit
+N=$1; 
+P=lesson; 
+L=$(printf '=%.s' {1..20})
+[ ! -e ${P}${N}.tcl ] && cp ${P}{0,$N}.tcl; 
+vi $P$N.tcl; 
+clear
+echo $L$P$N.tcl$L; 
+cat $P$N.tcl; 
+echo $L$P$N.tcl$L; 
+./$P$N.tcl;

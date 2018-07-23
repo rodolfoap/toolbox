@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<meta charset="UTF-8"> 
+<html></html>
+<script src="lib/jquery.js"></script><script src="lib/mustache.js"></script><script>
+	var person = { firstName: "Christophe", lastName: "Coenraets", blogURL: "http://coenraets.org" };
+	var template = "<head><title>Mustaches</title></head><body><div><h1>{{firstName}} / {{blogURL}}</h1></div></body>";
+	$(document).ready(function(){
+		$.get('song.mst', null, function(template) {
+			var rendered = Mustache.render(template, person);
+			$('html').html(rendered);
+		}, "text");
+	});
+</script>

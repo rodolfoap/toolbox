@@ -1,0 +1,3 @@
+echo This script should be executed as ". ./"$(basename $0)
+read -sp "root password: " mdp
+./debian2 $mdp

@@ -1,0 +1,18 @@
+#!/usr/bin/expect -f
+spawn ssh root@10.0.16.141
+expect {
+	eof {
+		send_user "\nNO OPEN PORT: Exiting. \n"
+		exit
+	}
+	"yes/no" { send "yes\n" }
+	"assword" 
+}
+interact \r {
+		send "\r"
+		return
+	}
+expect "#"
+send "ls -l /; exit; \n"
+expect eof
+send_user "\nFINISHED.\n"

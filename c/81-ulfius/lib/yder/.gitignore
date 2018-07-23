@@ -1,0 +1,9 @@
+*.o
+*.so
+*.so.*.*
+*.a
+log_combined
+log_console
+log_file
+log_syslog
+test/yder_test

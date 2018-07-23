@@ -1,0 +1,12 @@
+#!/bin/bash
+read -s PASS
+PWD=$(echo -n $PASS | while read -n 1 c; do [[ "$c" == ["mypassword"] ]] && echo -n "\\"; echo -n $c; done)
+echo -n $PWD
+/usr/bin/expect <<EOD
+spawn ssh root@server1
+expect "assword"
+send "$PWD\n"
+EOD
+echo "you're out"
+
+

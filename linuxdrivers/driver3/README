@@ -1,0 +1,7 @@
+Igual que el anterior, este permite 
+
+cat /proc/hello 
+
+y 
+
+cat /dev/hello

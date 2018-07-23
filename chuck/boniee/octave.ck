@@ -1,0 +1,27 @@
+SinOsc s => dac;
+
+s.freq(440*1/64);
+1::second => now;
+s.freq(440*1/32);
+1::second => now;
+s.freq(440*1/16);
+1::second => now;
+s.freq(440*1/8);
+1::second => now;
+s.freq(440*1/4);
+1::second => now;
+s.freq(440*1/2);
+1::second => now;
+s.freq(440*1);
+2::second => now;
+s.freq(440*2);
+1::second => now;
+s.freq(440*4);
+1::second => now;
+s.freq(440*8);
+1::second => now;
+s.freq(440*16);
+1::second => now;
+s.freq(440*32);
+1::second => now;
+s.freq(440*64);

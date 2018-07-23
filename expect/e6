@@ -1,0 +1,34 @@
+#!/bin/bash
+
+/usr/bin/expect << EOD
+spawn /usr/bin/vncpasswd
+expect "assword"
+ interact {
+                     -reset $CTRLZ {exec kill -STOP [pid]}
+                     \001   {send_user "you typed a control-A\n";
+                             send "\001"
+                            }
+                     $      {send_user "The date is [clock format [clock seconds]]."}
+                     \003   exit
+                     foo    {send_user "bar"}
+                     ~~
+                 }
+
+EOD
+exit
+
+
+read -s -p "Pass: " PASS 
+PWD=$(echo -n $PASS | while read -n 1 c; do [[ "$c" == ["!@#$%^&*()."] ]] && echo -n "\\"; echo -n $c; done)
+echo -n $PWD
+echo
+/usr/bin/expect <<EOD
+spawn /usr/bin/vncpasswd pasfile
+expect "assword"
+send "$PWD\n" 
+expect "erify"
+send "$PWD\n" 
+EOD
+echo "you're out"
+
+

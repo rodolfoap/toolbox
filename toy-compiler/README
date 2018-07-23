@@ -1,0 +1,18 @@
+http://gnuu.org/2009/09/18/writing-your-own-toy-compiler/
+
+Required: apt install:
+	Start-Date: 2014-08-31  02:30:58
+	Commandline: /usr/sbin/synaptic
+	Install: llvm-3.1:amd64 (3.1-1, automatic), llvm-3.1-runtime:amd64 (3.1-1, automatic), llvm-3.1-dev:amd64 (3.1-1), libllvm3.1:amd64 (3.1-1, automatic)
+	End-Date: 2014-08-31  02:31:12
+
+This file was provided, 
+	/usr/lib/llvm-3.1/include/llvm/Value.h
+the source codel expects
+	llvm/IR/Value.h
+so it was corrected.
+
+Sourcecode in http://github.com/lsegal/my_toy_compiler
+
+Example usage:
+	echo 'int do_math(int a) { int x = a * 5 + 3 } do_math(10)' | ./parse

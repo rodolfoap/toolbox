@@ -1,0 +1,6 @@
+#!/bin/bash
+set -x 
+
+kill $(ps fax|grep Server|grep -v grep|awk '{print $1;}')
+killall rmiregistry
+rm -f *.class

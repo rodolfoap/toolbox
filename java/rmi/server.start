@@ -1,0 +1,6 @@
+#!/bin/bash
+set -x 
+
+javac Hello.java Server.java Client.java
+rmiregistry &
+java Server &

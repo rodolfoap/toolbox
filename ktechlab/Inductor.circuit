@@ -1,0 +1,51 @@
+<!DOCTYPE KTechlab>
+<document type="circuit" >
+ <item x="348" y="204" z="2" type="ec/capacitor" id="capacitor" flip="0" angle="0" >
+  <data value="0.05" type="number" id="Capacitance" />
+ </item>
+ <item x="348" y="60" z="0" type="ec/battery" id="cell" flip="0" angle="0" >
+  <data value="0.9" type="number" id="voltage" />
+ </item>
+ <item x="348" y="308" z="1" type="ec/inductor" id="inductor" flip="1" angle="180" >
+  <data value="0.001" type="number" id="Inductance" />
+ </item>
+ <item x="284" y="124" z="4" type="ec/ptm_switch" id="ptm_switch" flip="0" angle="90" >
+  <data value="" type="string" id="button_text" />
+  <data value="0.005" type="number" id="bounce_period" />
+  <data value="0" type="bool" id="bounce" />
+  <button id="button" state="0" />
+ </item>
+ <item x="340" y="148" z="5" type="ec/ptm_switch" id="ptm_switch__45" flip="0" angle="0" >
+  <data value="" type="string" id="button_text" />
+  <data value="0.005" type="number" id="bounce_period" />
+  <data value="0" type="bool" id="bounce" />
+  <button id="button" state="0" />
+ </item>
+ <item x="348" y="252" z="3" type="ec/voltageprobe" id="voltageprobe" flip="0" angle="0" >
+  <data value="Linear" type="string" id="scaling" />
+  <data value="0.1" type="number" id="lower_abs_value" />
+  <data value="1" type="number" id="upper_abs_value" />
+  <data value="#004188" type="color" id="color" />
+ </item>
+ <connector start-node-is-child="1" manual-route="1" end-node-parent="ptm_switch" route="41,7,42,7,41,7,40,7,39,7,38,7,37,7,36,7,35,7,35,8,35,9,35,10,35,11,35,12," end-node-cid="n1" start-node-parent="cell" start-node-cid="n1" id="connector" end-node-is-child="1" />
+ <connector start-node-is-child="0" manual-route="1" start-node-id="node1" end-node-parent="capacitor" route="35,25,36,25,37,25,38,25,39,25,40,25,41,25," end-node-cid="n1" id="connector__29" end-node-is-child="1" />
+ <connector start-node-is-child="1" manual-route="1" end-node-id="node1__30" route="45,25,46,25,47,25,48,25,49,25,50,25," start-node-parent="capacitor" start-node-cid="p1" id="connector__32" end-node-is-child="0" />
+ <connector start-node-is-child="1" manual-route="1" end-node-id="node1__34" route="40,38,39,38,38,38,37,38,36,38,35,38,35,37,35,36,35,35,35,34,35,33,35,32,35,31,36,31," start-node-parent="inductor" start-node-cid="n1" id="connector__35" end-node-is-child="0" />
+ <connector start-node-is-child="1" manual-route="1" end-node-id="node1__34" route="40,31,39,31,38,31,37,31,36,31," start-node-parent="voltageprobe" start-node-cid="n1" id="connector__36" end-node-is-child="0" />
+ <connector start-node-is-child="0" manual-route="1" end-node-id="node1" start-node-id="node1__34" route="36,31,35,31,35,30,35,29,35,28,35,27,35,26,35,25," id="connector__37" end-node-is-child="0" />
+ <connector start-node-is-child="1" manual-route="1" end-node-id="node1__38" route="46,38,47,38,48,38,49,38,50,38,50,37,50,36,50,35,50,34,50,33,50,32,50,31,50,30," start-node-parent="inductor" start-node-cid="p1" id="connector__39" end-node-is-child="0" />
+ <connector start-node-is-child="1" manual-route="1" end-node-id="node1__38" route="46,31,45,31,46,31,47,31,48,31,49,31,50,31,50,30," start-node-parent="voltageprobe" start-node-cid="p1" id="connector__40" end-node-is-child="0" />
+ <connector start-node-is-child="0" manual-route="1" end-node-id="node1__30" start-node-id="node1__38" route="50,30,50,29,50,28,50,27,50,26,50,25," id="connector__41" end-node-is-child="0" />
+ <connector start-node-is-child="1" manual-route="1" end-node-id="node1__48" route="39,18,38,18,37,18,36,18,35,18,35,19,35,20,35,21," start-node-parent="ptm_switch__45" start-node-cid="n1" id="connector__49" end-node-is-child="0" />
+ <connector start-node-is-child="1" manual-route="1" end-node-id="node1__48" route="35,18,35,19,35,20,35,21," start-node-parent="ptm_switch" start-node-cid="p1" id="connector__50" end-node-is-child="0" />
+ <connector start-node-is-child="0" manual-route="1" end-node-id="node1" start-node-id="node1__48" route="35,21,35,22,35,23,35,24,35,25," id="connector__51" end-node-is-child="0" />
+ <connector start-node-is-child="1" manual-route="1" end-node-id="node1__52" route="45,18,46,18,47,18,48,18,49,18,50,18,50,19," start-node-parent="ptm_switch__45" start-node-cid="p1" id="connector__53" end-node-is-child="0" />
+ <connector start-node-is-child="0" manual-route="1" end-node-id="node1__52" start-node-id="node1__30" route="50,25,50,24,50,23,50,22,50,21,50,20,50,19," id="connector__54" end-node-is-child="0" />
+ <connector start-node-is-child="0" manual-route="1" start-node-id="node1__52" end-node-parent="cell" route="50,19,50,18,50,17,50,16,50,15,50,14,50,13,50,12,50,11,50,10,50,9,50,8,50,7,49,7,48,7,47,7,46,7,45,7," end-node-cid="p1" id="connector__55" end-node-is-child="1" />
+ <node x="284" y="204" id="node1" />
+ <node x="404" y="204" id="node1__30" />
+ <node x="292" y="252" id="node1__34" />
+ <node x="404" y="244" id="node1__38" />
+ <node x="284" y="172" id="node1__48" />
+ <node x="404" y="156" id="node1__52" />
+</document>

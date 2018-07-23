@@ -1,0 +1,77 @@
+This is a multi-part message in MIME format.
+--------------040302050802070100030405
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+[Previously saved workspace restored]
+
+ > 
+x=c(1,0,0,0,0,3,4,4,3,1,2,0,1,1,2,1,0,3,2,2,4,0,0,0,1,4,1,0,0,1,1,0,1,0,0,0,0,1,1,0,2,0,0,1,0,0,2,0,3,5)
+ > count(x)
+Error: could not find function "count"
+ > lenght(x)
+Error: could not find function "lenght"
+ > length(x)
+[1] 50
+ > sort(x)
+[1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 
+1 2 2 2
+[39] 2 2 2 3 3 3 3 4 4 4 4 5
+ > sum(x)
+[1] 58
+ > mean(x)
+[1] 1.16
+ > median(x)
+[1] 1
+ > sd(x)
+[1] 1.390346
+ > var(x)
+[1] 1.933061
+
+
+--------------040302050802070100030405
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+  </head>
+  <body bgcolor="#FFFFFF" text="#000000">
+    <meta name="qrichtext" content="1">
+    <p style=" margin-top:0px; margin-bottom:0px; margin-left:0px;
+      margin-right:0px; -qt-block-indent:0; text-indent:0px;"><!--StartFragment-->[Previously
+      saved workspace restored]<br>
+      <br>
+      &gt;
+x=c(1,0,0,0,0,3,4,4,3,1,2,0,1,1,2,1,0,3,2,2,4,0,0,0,1,4,1,0,0,1,1,0,1,0,0,0,0,1,1,0,2,0,0,1,0,0,2,0,3,5)<br>
+      &gt; count(x)<br>
+      Error: could not find function "count"<br>
+      &gt; lenght(x)<br>
+      Error: could not find function "lenght"<br>
+      &gt; length(x)<br>
+      [1] 50<br>
+      &gt; sort(x)<br>
+      [1] 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1
+      1 1 1 1 2 2 2<br>
+      [39] 2 2 2 3 3 3 3 4 4 4 4 5<br>
+      &gt; sum(x)<br>
+      [1] 58<br>
+      &gt; mean(x)<br>
+      [1] 1.16<br>
+      &gt; median(x)<br>
+      [1] 1<br>
+      &gt; sd(x)<br>
+      [1] 1.390346<br>
+      &gt; var(x)<br>
+      [1] 1.933061<br>
+      <br>
+      <!--EndFragment--></p>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style type="text/css">
+p, li { white-space: pre-wrap; }
+</style>
+  </body>
+</html>
+
+--------------040302050802070100030405--
