@@ -1,0 +1,10 @@
+#!/bin/bash
+
+count=-1
+touch run
+PART=0; while [ -f run ]; do echo "[P=${PART}, N="$((++count))", T=$(date +%s.%N)]"; done|kafkacat -P -T -b 127.0.0.1 -p $PART -t test &
+PART=1; while [ -f run ]; do echo "[P=${PART}, N="$((++count))", T=$(date +%s.%N)]"; done|kafkacat -P -T -b 127.0.0.1 -p $PART -t test &
+PART=2; while [ -f run ]; do echo "[P=${PART}, N="$((++count))", T=$(date +%s.%N)]"; done|kafkacat -P -T -b 127.0.0.1 -p $PART -t test &
+PART=3; while [ -f run ]; do echo "[P=${PART}, N="$((++count))", T=$(date +%s.%N)]"; done|kafkacat -P -T -b 127.0.0.1 -p $PART -t test &
+read DUMMY;
+rm -f run

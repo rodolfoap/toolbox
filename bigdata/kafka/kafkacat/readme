@@ -1,0 +1,7 @@
+Create a topic with 4 partitions (named 0 to 3):
+$ cd /opt/kafka
+$ bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 4 --topic test
+
+kafkacat/produce.tstamp will generate messages on the four partitions.
+consume.partition.autoassign 6 will start 6 consumers, taking data in no order. Consumers will just consume one message at a time.
+consume.partition.manual-assign 5 will start 6 consumers, that consume messages as this: (C0, P0), (C1, P1), (C2, P2), (C3, P3), (C4, P0), (C5, P1), (C6, P2)

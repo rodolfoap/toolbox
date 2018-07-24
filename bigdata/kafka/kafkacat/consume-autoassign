@@ -1,0 +1,11 @@
+#!/bin/bash
+
+[ -z "$1" ] && { echo "Usage: $0 [CONSUMER_QUANTITY]"; exit 0; }
+
+# Partitions are autoassigned if -1 is used.
+for a in $(seq 1 $1); do
+	kafkacat -O -C -q -b 127.0.0.1 -t test -u -o -10 -p -1|sed "s/^/[CONSUMER:${a}]/g" &
+done
+
+while [ -f run ]; do sleep 0.1; done
+killall kafkacat
