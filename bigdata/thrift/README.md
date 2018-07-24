@@ -1,3 +1,5 @@
+Fixed from https://github.com/cdmeister/Basic-Thrift-Tutorial
+
 To compile thrift file
 ` thrift --gen cpp hello.thrift`
 
