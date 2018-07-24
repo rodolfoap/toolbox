@@ -1,0 +1,26 @@
+#!/bin/bash -v
+
+clear
+echo See: https://github.com/edenhill/kafkacat/issues/136
+
+# Tests with files
+
+echo "CgNmb29SAA=="|base64 -d > nulltest.pb
+
+echo "CgNmb29SAA=="|base64 -d|kafkacat -P -b localhost:9092 -t charon_test -D \t -T > nulltest.pb.to_kafka
+
+echo "CgNmb29SAA=="|base64 -d|kafkacat -P -b localhost:9092 -t charon_test -D \t;
+kafkacat -C -b localhost:9092 -t charon_test -o -1 -c 1 -D '' > nulltest.pb.from_kafka
+
+diff -s nulltest.pb nulltest.pb.to_kafka
+
+diff -s nulltest.pb nulltest.pb.from_kafka
+
+rm -f nulltest*
+
+echo "CgNmb29SAA=="|base64 -d|protoc --decode_raw
+
+echo "CgNmb29SAA=="|base64 -d|kafkacat -P -b localhost:9092 -t charon_test -D \t -T|protoc --decode_raw
+
+echo "CgNmb29SAA=="|base64 -d|kafkacat -P -b localhost:9092 -t charon_test -D \t;
+kafkacat -C -b localhost:9092 -t charon_test -o -1 -c 1 -D ''|protoc --decode_raw
