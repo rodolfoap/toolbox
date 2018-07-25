@@ -1,0 +1,61 @@
+Spark Shell:
+
+sc.parallelize(1 to 1000).count()
+
+val inputfile = sc.textFile("/opt/spark/long.text")
+
+val counts = inputfile.flatMap(line => line.split(" ")).map(word => (word, 1)).reduceByKey(_+_);
+counts.toDebugString
+counts.cache()
+counts.saveAsTextFile("/home/rodolfoap/output")
+
+or
+
+val counts=inputfile.flatMap(line => line.split(" "))
+val counts2=counts.map(word => (word, 1))
+val counts3=counts2.reduceByKey(_+_)
+counts.toDebugString
+counts.cache()
+counts3.saveAsTextFile("/home/rodolfoap/output3")
+
+sc.getConf.getOption("spark.local.dir")
+sc.getConf.getOption("spark.app.name")
+
+val lst=List(9, 8, 7, 6, 5, 4, 3, 2, 1)
+lst.reduce(_*10+_)
+	res10: Int = 987654321
+
+val total=lst.reduce(_*10+_)
+	total: Int = 987654321
+
+println(total)
+	987654321
+
+lst.foreach(x=>println(x*2))
+	18
+	16
+	14
+	12
+	10
+	8
+	6
+	4
+	2
+
+lst.reduce(_+_)
+	res17: Int = 45
+
+def addTwo(x:Int):Int=x+2
+	addTwo: (x: Int)Int
+
+addTwo(3)
+	res18: Int = 5
+
+Shell
+=====
+
+$ SPARK_MASTER_IP=192.168.1.131 ./bin/run-example SparkPi
+$ sbin/start-master.sh
+
+mvn archetype:generate -DgroupId=eu.gtd -DartifactId=sparkTest -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
