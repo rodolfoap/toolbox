@@ -1,0 +1,4 @@
+#!/bin/bash
+set -x
+
+rsync -va --exclude=libraries/ . ../sandbox/processing/

@@ -1,9 +1,9 @@
 float thickness=200.0;
 void fn(float x, float y){
         float d=radians(sqrt(pow(x,2)+pow(y,2))*2);
-	stroke(0, 255, 0, 255-6*PI*d);
+	stroke(0, 255-6*PI*d, 6*PI*d, 255-6*PI*d);
 	point(x, y, -cos(d)/d*thickness);
-//      return -sin(d)/d*thickness;
+//	point(x, y, -sin(d)/d*thickness);
 }
 void setup() {
         fullScreen(P3D);	// Fullscreen canvas
