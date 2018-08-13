@@ -11,7 +11,7 @@ void setup() {
 
 void draw() {
   background(0);
-  stroke(color(0, 0, 0));
+  stroke(color(0, 32, 0));
   for (Ball b : balls) {
     b.update();
     b.display();

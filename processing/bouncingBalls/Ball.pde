@@ -4,11 +4,12 @@ class Ball {
   PVector position;
   PVector velocity;
   int name;
-  float initialEnergy; 
+  float lastEnergy, currentEnergy, entropy=0; 
   Ball(float x, float y, PVector v) {
     position = new PVector(x, y);
     velocity=v;
-    initialEnergy=energy();
+    lastEnergy=energy();
+    currentEnergy=lastEnergy;
     name=ballNumber++;
   }
 
@@ -16,19 +17,14 @@ class Ball {
     return sq(velocity.mag())/2;
   }
 
-  float entropy(){
-    if(initialEnergy==0) return 0;
-    return (energy()-initialEnergy)/initialEnergy;
-  }
-
   void update() {
     position.add(velocity);
   }
 
   void display() {
-    fill(color(0, 256, 0));
-    ellipse(position.x, position.y, radius*2, radius*2);
     fill(color(0, 0, 0));
+    ellipse(position.x, position.y, radius*2, radius*2);
+    fill(color(0, 64, 0));
     text(this.name, position.x-4, position.y+4); 
   }
   
@@ -49,28 +45,34 @@ class Ball {
   }
 
   void checkCollision(Ball other) {
-	PVector distanceVect = PVector.sub(other.position, position);
-	float distanceVectMag = distanceVect.mag();
-	if (distanceVectMag < minDistance) { // Collision!
+	  PVector distanceVect = PVector.sub(other.position, position);
+  	float distanceVectMag = distanceVect.mag();
+	  if (distanceVectMag < minDistance) { // Collision!
 
-		// Correct distance to avoid overlapping: move the other
-		PVector distanceVectFixed=distanceVect.copy().normalize().mult(minDistance-distanceVect.mag());
-		other.position.add(distanceVectFixed); 
+  		// Correct distance to avoid overlapping: move the other
+		  PVector distanceVectFixed=distanceVect.copy().normalize().mult(minDistance-distanceVect.mag());
+		  other.position.add(distanceVectFixed); 
 
-		// Rotate both speeds to emulate bouncing on a vertical wall
-		velocity.rotate(-distanceVectFixed.heading());
-	        other.velocity.rotate(-distanceVectFixed.heading());
+		  // Rotate both speeds to emulate bouncing on a vertical wall
+		  velocity.rotate(-distanceVectFixed.heading());
+	    other.velocity.rotate(-distanceVectFixed.heading());
         
-		// Then, simply exchange horizontal speeds 
-		float tempX=velocity.x;
-		velocity.x=other.velocity.x;
-		other.velocity.x=tempX;
-	
-		// Rotate back to original coordinates
-	        velocity.rotate(distanceVectFixed.heading());
-	        other.velocity.rotate(distanceVectFixed.heading());
+		  // Then, simply exchange horizontal speeds 
+		  float tempX=velocity.x;
+		  velocity.x=other.velocity.x;
+		  other.velocity.x=tempX;
+  	
+		  // Rotate back to original coordinates
+	    velocity.rotate(distanceVectFixed.heading());
+	    other.velocity.rotate(distanceVectFixed.heading());
 
-	 	printStates();
-	}
+      // Recalculate entropy: this and the other entities, since the other is not going to bounce again with this.
+      if(this.lastEnergy!=0) this.entropy+=(this.energy()-this.lastEnergy)/this.lastEnergy;
+      this.lastEnergy=this.energy();
+      if(other.lastEnergy!=0) other.entropy+=(other.energy()-other.lastEnergy)/other.lastEnergy;
+      other.lastEnergy=other.energy();
+
+	 	  printStates();
+	  }
   }
 }
