@@ -1,17 +1,18 @@
-int ballNumber = 0;
 float minDistance = 2 * radius;
 class Ball {
 	PVector position;
 	PVector velocity;
 	int name;
 	float initialEnergy;
+	float lastEnergy;
 
 	// Constructor
-	Ball(float x, float y, PVector v) {
+	Ball(float x, float y, PVector v, int bName) {
 		position = new PVector(x, y);
 		velocity = v;
 		initialEnergy = energy();
-		name = ballNumber++;
+		name = bName;
+		lastEnergy=energy();
 	}
 
 	void update() {
@@ -26,25 +27,31 @@ class Ball {
 	}
 
 	void checkBorderCollision() {
-		if (position.x > width - radius) {
-			position.x = width - radius;
-			velocity.x *= -1;
-		} else if (position.x < radius) {
-			position.x = radius;
-			velocity.x *= -1;
-		} else if (position.y > height - radius) {
+		 if (position.y > height - radius) {
 			position.y = height - radius;
 			velocity.y *= -1;
 		} else if (position.y < radius) {
 			position.y = radius;
 			velocity.y *= -1;
-		}
+		} else if (position.x < radius) {
+                        position.x = radius;
+                        velocity.x *= -1;
+                } else if (position.x > (name==0?rWall:width) - radius) {
+                        position.x = (name==0?rWall:width) - radius;
+                        velocity.x *= -1;
+                }
 	}
 
-	void checkCollision(Ball other) {
+	void checkBallCollision(Ball other) {
+        	if(maxInteraction>0 && interaction>=maxInteraction) noLoop();
 		PVector distanceVect = PVector.sub(other.position, position);
 		float distanceVectMag = distanceVect.mag();
 		if (distanceVectMag < minDistance) {	// Collision!
+			interaction++;
+
+			// before changing the speed, let's save the previous energy
+			lastEnergy=energy();
+
 			// Correct distance to avoid overlapping: move the other
 			PVector distanceVectFixed=distanceVect.copy().normalize().mult(minDistance-distanceVect.mag());
 			other.position.add(distanceVectFixed);
@@ -62,17 +69,18 @@ class Ball {
 			velocity.rotate(distanceVectFixed.heading());
 			other.velocity.rotate(distanceVectFixed.heading());
 
-			printStates();
+			calculateEntropy();
 		}
 	}
 
         float energy() {
-                return sq(velocity.mag()) / 2;
+                return sq(velocity.mag()) / 2;                
         }
         float entropy() {
-                if (this.initialEnergy == 0)
-                	return 0;
-                else 
-                	return(this.energy()-this.initialEnergy)/this.initialEnergy;
+                // Third law of thermodynamics
+                if (this.initialEnergy == 0) return 0;
+
+		// Normally, entropy would be dQ/T, we can assume dE/E
+                else return(this.energy()-lastEnergy)/lastEnergy;
         }
 }
