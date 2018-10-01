@@ -38,7 +38,7 @@ public class Main extends PApplet {
 
 	@Override
 	public void draw() {
-		super.draw();
+		//super.draw();
 		background(0);
 		stroke(color(0, 255, 0));
 		translate(width / 2, height / 2 - 100, thickness);

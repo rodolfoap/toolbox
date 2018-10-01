@@ -27,7 +27,7 @@ public class Main extends PApplet {
 
 	@Override
 	public void draw() {
-		super.draw();
+		//super.draw();
 		ellipse(width / 2, height / 2, second(), second());
 	}
 
