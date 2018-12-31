@@ -1,0 +1,3 @@
+class Target {
+  PVector position;
+}
