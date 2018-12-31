@@ -1,0 +1,10 @@
+echo
+echo IMAGES
+echo ======
+docker images
+
+echo
+echo CONTAINERS
+echo ==========
+docker ps -a
+echo

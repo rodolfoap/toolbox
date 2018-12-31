@@ -1,0 +1,3 @@
+CONTAINERS=$(docker ps -a|grep image01|awk '{print $1}')
+docker stop $CONTAINERS
+docker rm $CONTAINERS
