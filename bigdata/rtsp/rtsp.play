@@ -1,0 +1,8 @@
+#!/bin/bash
+[ -z "$1" ] && VIDEOSTREAM="rtsp://127.0.0.1:5554/streaming.sdp" || VIDEOSTREAM="$1"
+
+FILTER="scale=320:240, drawtext=fontfile=Arial.ttf: text='%{pts\:hms}/%{frame_num}': start_number=1: x=0: y=h-(2*lh): fontcolor=white: fontsize=8: box=1: boxcolor=black"
+FILTER="drawtext=fontfile=Arial.ttf: text='%{pts\:hms}/%{frame_num}': start_number=1: x=0: y=h-(2*lh): fontcolor=white: fontsize=8: box=1: boxcolor=black"
+
+set -x
+/usr/bin/ffplay -vf "$FILTER" "$VIDEOSTREAM" # -x 640 -y 480
