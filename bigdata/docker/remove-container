@@ -1,0 +1,3 @@
+CONTAINERS=$(docker ps -a -q --filter=ancestor=image01)
+docker stop $CONTAINERS
+docker rm $CONTAINERS
