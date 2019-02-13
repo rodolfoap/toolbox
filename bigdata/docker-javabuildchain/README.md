@@ -87,15 +87,12 @@ Done.
 ```
 ## Avoiding Images
 
-As this is just an example, the right build wouldn't in fact need a Dockerfile. The build can be simple as...
+As this is just an example to show how to build inside Docker, the right build wouldn't in fact need a Dockerfile or a pipeline file. The build can be simple as...
 
 ```
-#!/bin/bash
-
-# Run the build pipeline, everytime it is required.
 docker run -ti --rm \
 	-w /app \
 	-v $(pwd):/app \
 	-v "$HOME/.m2":/root/.m2 \
-	maven:3.6.0-jdk-11-slim ./pipeline.bash
+	maven:3.6.0-jdk-11-slim mvn clean install
 ```
