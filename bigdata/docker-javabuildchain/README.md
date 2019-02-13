@@ -87,7 +87,7 @@ Done.
 ```
 ## Avoiding Images
 
-As this is just an example to show how to build inside Docker, the right build wouldn't in fact need a Dockerfile or a pipeline file. The build can be simple as...
+As this is just an example to show how to build inside Docker, the right build wouldn't in fact need a Dockerfile or a pipeline file. The build can be as simple as...
 
 ```
 docker run -ti --rm \
