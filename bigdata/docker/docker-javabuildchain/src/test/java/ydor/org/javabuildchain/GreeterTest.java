@@ -16,12 +16,14 @@ public class GreeterTest extends TestCase {
 	 */
 	public GreeterTest(String testName) {
 		super(testName);
+		System.err.println(new Throwable().getStackTrace()[0].toString());
 	}
 
 	/**
 	 * @return the suite of tests being tested
 	 */
 	public static Test suite() {
+		System.err.println(new Throwable().getStackTrace()[0].toString());
 		return new TestSuite(GreeterTest.class);
 	}
 
@@ -29,6 +31,7 @@ public class GreeterTest extends TestCase {
 	 * Rigourous Test :-)
 	 */
 	public void testApp() {
+		System.err.println(new Throwable().getStackTrace()[0].toString());
 		Greeter greeter = new Greeter("World");
 		assertEquals("World", greeter.getName());
 	}

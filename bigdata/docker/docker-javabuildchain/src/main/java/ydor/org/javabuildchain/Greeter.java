@@ -14,6 +14,7 @@ public class Greeter {
 	 * Trivial Greeter class
 	 */
 	public Greeter(String name) {
+		System.err.println(new Throwable().getStackTrace()[0].toString());
 		this.name = name;
 	}
 
@@ -21,6 +22,7 @@ public class Greeter {
 	 * @return the name
 	 */
 	public String sayHello() {
+		System.err.println(new Throwable().getStackTrace()[0].toString());
 		return "Hello, " + name + "!";
 	}
 
@@ -28,6 +30,7 @@ public class Greeter {
 	 * Trivial Greeter class
 	 */
 	public String getName() {
+		System.err.println(new Throwable().getStackTrace()[0].toString());
 		return this.name;
 	}
 }
