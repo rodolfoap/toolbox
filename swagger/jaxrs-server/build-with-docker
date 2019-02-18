@@ -1,0 +1,7 @@
+docker run -ti --rm \
+	-w /app \
+	-v $(pwd):/app \
+	-v "$HOME/.m2":/root/.m2 \
+	-p 8080:8080 \
+	maven:3.6.0-jdk-8-slim \
+	mvn clean package jetty:run
