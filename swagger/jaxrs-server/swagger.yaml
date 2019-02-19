@@ -1,0 +1,32 @@
+swagger: '2.0'
+info:
+  title: Smite2 XXX
+  description: Smite2 uService.
+  version: 2.3.0
+host: dockerhost
+basePath: /camapi
+paths:
+  '/device/{parameter1}':
+    get:
+      summary: Runs an external command.
+      description: Runs an external command.
+      produces:
+        - text/json
+      parameters:
+        - name: parameter1
+          in: path
+          required: true
+          type: string
+          description: Parameter1.
+      responses:
+        '200':
+          description: Description
+        '401':
+          $ref: '#/responses/UnauthorizedError'
+responses:
+  UnauthorizedError:
+    description: API key is missing or invalid
+    headers:
+      WWW_Authenticate:
+        type: string
+

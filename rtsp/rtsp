@@ -1,0 +1,6 @@
+#!/bin/bash
+[ -z "$1" ] && VIDEOFILE=/home/rodolfoap/bin/PETS09-S2L1.mp4 || VIDEOFILE="$1"
+echo -e "To open the stream, use: \n\tffplay rtsp://127.0.0.1:5554/streaming.sdp"
+
+set -x
+/usr/bin/cvlc -I dummy $VIDEOFILE --sout "#gather:rtp{sdp=rtsp://:5554/streaming.sdp}" --loop --sout-keep
