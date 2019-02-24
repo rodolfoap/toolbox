@@ -1,0 +1,114 @@
+swagger: '2.0'
+info:
+  title: Example
+  description: Example REST Endpoint.
+  version: 2.3.0
+host: dockerhost
+basePath: /
+paths:
+  '/{parameter1}':
+    get:
+      summary: Runs an external command.
+      description: Runs an external command.
+      produces:
+        - text/json
+      parameters:
+        - name: parameter1
+          in: path
+          required: true
+          type: string
+          description: Parameter1.
+      responses:
+        '200':
+          description: Description
+        '401':
+          $ref: '#/responses/UnauthorizedError'
+  '/{parameter1}/{parameter2}':
+    get:
+      summary: Runs an external command.
+      description: Runs an external command.
+      produces:
+        - text/json
+      parameters:
+        - name: parameter1
+          in: path
+          required: true
+          type: string
+          description: Parameter1.
+        - name: parameter2
+          in: path
+          required: true
+          type: string
+          description: Parameter2.
+      responses:
+        '200':
+          description: Description
+        '401':
+          $ref: '#/responses/UnauthorizedError'
+  '/{parameter1}/{parameter2}/{parameter3}':
+    get:
+      summary: Runs an external command.
+      description: Runs an external command.
+      produces:
+        - text/json
+      parameters:
+        - name: parameter1
+          in: path
+          required: true
+          type: string
+          description: Parameter1.
+        - name: parameter2
+          in: path
+          required: true
+          type: string
+          description: Parameter2.
+        - name: parameter3
+          in: path
+          required: true
+          type: string
+          description: Parameter3.
+      responses:
+        '200':
+          description: Description
+        '401':
+          $ref: '#/responses/UnauthorizedError'
+  '/{parameter1}/{parameter2}/{parameter3}/{parameter4}':
+    get:
+      summary: Runs an external command.
+      description: Runs an external command.
+      produces:
+        - text/json
+      parameters:
+        - name: parameter1
+          in: path
+          required: true
+          type: string
+          description: Parameter1.
+        - name: parameter2
+          in: path
+          required: true
+          type: string
+          description: Parameter2.
+        - name: parameter3
+          in: path
+          required: true
+          type: string
+          description: Parameter3.
+        - name: parameter4
+          in: path
+          required: true
+          type: string
+          description: Parameter4.
+      responses:
+        '200':
+          description: Description
+        '401':
+          $ref: '#/responses/UnauthorizedError'
+responses:
+  UnauthorizedError:
+    description: API key is missing or invalid
+    headers:
+      WWW_Authenticate:
+        type: string
+
+
