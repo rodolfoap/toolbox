@@ -162,7 +162,15 @@
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
 			<scope>runtime</scope>
-			<version>2.27</version>
+			<version>${jersey2-version}</version>
+		</dependency>
+		<!-- dependency> <groupId>org.glassfish.jersey.media</groupId> <artifactId>jersey-media-moxy</artifactId> 
+			<scope>runtime</scope> <version>${jersey2-version}</version> </dependency -->
+		<dependency>
+			<groupId>org.glassfish.jersey.ext</groupId>
+			<artifactId>jersey-entity-filtering</artifactId>
+			<scope>runtime</scope>
+			<version>${jersey2-version}</version>
 		</dependency>
 
 	</dependencies>
@@ -176,7 +184,7 @@
 		</repository>
 	</repositories>
 	<properties>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 		<maven.compiler.source>${java.version}</maven.compiler.source>
 		<maven.compiler.target>${java.version}</maven.compiler.target>
 		<swagger-core-version>1.5.18</swagger-core-version>
