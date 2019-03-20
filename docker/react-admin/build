@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+chmod 755 entrypoint
 docker build \
 	-t nodereactadmin \
 	--build-arg UID=$(id -u) \
