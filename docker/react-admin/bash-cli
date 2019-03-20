@@ -4,4 +4,4 @@
 mkdir -p app/
 
 # Then, run the container
-docker run -ti -v $(pwd)/app:/app -p 3000:3000/tcp nodereactadmin-nt /bin/bash
+docker run -ti -v $(pwd)/app:/app -p 3000:3000/tcp nodereactadmin /bin/bash
