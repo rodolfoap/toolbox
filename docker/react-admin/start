@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # This is required, in order for the directory to have the proper rights
-mkdir -p app/
+mkdir -p app/ cache/
 
 # Then, run the container
-docker run -ti -v $(pwd)/app:/app -p 3000:3000/tcp nodereactadmin
+docker run -ti \
+	-v $(pwd)/cache:/home/node/.cache/ \
+	-v $(pwd)/app:/app \
+	-p 3000:3000/tcp \
+	nodereactadmin

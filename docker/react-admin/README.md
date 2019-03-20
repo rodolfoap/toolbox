@@ -21,3 +21,4 @@ $ ./start
 
 * The `bash-cli` file runs a bash command inside the container.
 * The `yarn-build` command is an example of how to run yarn commands inside the container.
+* If permission issues are present in the `/app` directory, just restart the container. The permissions will be corrected.

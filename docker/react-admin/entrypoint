@@ -13,6 +13,9 @@ echo Setting up container...
 	yarn add react-admin ra-data-json-server prop-types
 	echo Done.
 }
-echo "Application found. Starting up yarn..."
+echo "Application found. Checking permissions..."
+sudo chown -R $NRADM_USER /app &>/dev/null
+
+echo "Starting up yarn..."
 cd /app
 yarn start
