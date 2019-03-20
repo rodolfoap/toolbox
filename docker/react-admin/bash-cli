@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# This is required, in order for the directory to have the proper rights
+mkdir -p app/
+
+# Then, run the container
+docker run -ti -v $(pwd)/app:/app -p 3000:3000/tcp nodereactadmin-nt /bin/bash
