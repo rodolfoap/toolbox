@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo Setting up container...
-[ ! -d /app/src ] && [ -d /usr/app/src ] && {
+[ ! -d /app/src ] && [ -d /usr/src/src ] && {
 	echo "Application wasn't found. Creating application from template..."
 	cp -r /usr/src/* /usr/src/.[a-z]* /app/
 	echo Done.
@@ -15,6 +15,13 @@ echo Setting up container...
 	echo Done.
 }
 
-echo "Starting up yarn..."
 cd /app
+[ -d node_modules ] || {
+	echo "Updating cache files..."
+	npm install
+}
+
+echo "Starting up yarn..."
 yarn start
+
+echo "Done."
