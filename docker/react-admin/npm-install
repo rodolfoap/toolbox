@@ -1,0 +1,5 @@
+#!/bin/bash
+
+[ -d app/ ] || { echo Application directory does not exist.; exit; }
+
+docker run -ti -v $(pwd)/app:/app -p 3000:3000/tcp nodereactadmin npm install

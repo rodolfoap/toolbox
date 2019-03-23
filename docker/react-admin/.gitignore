@@ -1,2 +1,8 @@
+# Remove only this to save the ./app directory into git
+
 app/
+
+# This should not be saved in a git repository, just cache files.
+
+app/node_modules/
 cache/

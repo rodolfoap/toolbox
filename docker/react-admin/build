@@ -2,7 +2,8 @@
 set -x
 chmod 755 entrypoint
 docker build \
-	-t nodereactadmin \
 	--build-arg UID=$(id -u) \
+	--build-arg GID=$(id -g) \
+	-t nodereactadmin \
 	-f Dockerfile \
 	.

@@ -6,6 +6,7 @@ echo Setting up container...
 	cp -r /usr/src/* /usr/src/.[a-z]* /app/
 	echo Done.
 }
+
 [ ! -d /app/src ] && {
 	echo "Application wasn't found. Creating application with yarn..."
 	cd /app
@@ -13,8 +14,6 @@ echo Setting up container...
 	yarn add react-admin ra-data-json-server prop-types
 	echo Done.
 }
-echo "Application found. Checking permissions..."
-sudo chown -R $NRADM_USER /app &>/dev/null
 
 echo "Starting up yarn..."
 cd /app
