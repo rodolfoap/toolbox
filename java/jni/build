@@ -1,7 +1,7 @@
 #!/bin/bash
 set -eux
 
-export JAVA_INC=/usr/lib/jvm/java-8-openjdk-amd64/include/
+export JAVA_INC=/usr/lib/jvm/java-8-openjdk-amd64/include
 
 # step 1: compile the .class file with invocation to a native method
 javac HelloJNI.java
