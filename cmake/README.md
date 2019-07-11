@@ -1,5 +1,15 @@
-See: https://github.com/rhoelzel/make_cmake
+CMake Stages:
+* **Configure**: CMakeLists.txt file is read in. CMake builds up an internal representation of the project during this stage: CMakeCache.txt.
+	* execute_process() is executed during configure time.
+* **Generation**: Project files are written out based on that internal representation.
+* **Build**: Execution of the build tool (e.g. make).
+	* add_custom_command() and...
+	* add_custom_target() are executed during Build time.
 
+
+#########################################################################################################
+# Comparison Cmake - Make
+# See: https://github.com/rhoelzel/make_cmake
 #########################################################################################################
 # Makefile
 
@@ -54,4 +64,3 @@ set_target_properties(mydynlib PROPERTIES POSITION_INDEPENDENT_CODE TRUE)
 set_target_properties(mydynlib PROPERTIES COMPILE_FLAGS "-fPIC")
 
 #########################################################################################################
-execute_process() is executed during configure time. But you want this to run at build time, thus add_custom_command() and add_custom_target() is what you're looking for.
