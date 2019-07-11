@@ -3,8 +3,6 @@
 
 #include <string>
 
-
 void DoSayHello(const std::string &name);
-
 
 #endif//_HELLO_JNI_IMPL_H
