@@ -4,4 +4,4 @@ cmake .. -Wdev
 make -j8
 popd &>/dev/null
 
-java -Djava.library.path=. HelloJNI
+[ -f HelloJNI.class ] && java -Djava.library.path=. HelloJNI

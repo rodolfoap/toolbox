@@ -6,6 +6,15 @@ CMake Stages:
 	* add_custom_command() and...
 	* add_custom_target() are executed during Build time.
 
+Tips
+====
+
+* Show message after target has been executed:
+```
+add_executable(prog main.c ${PROGSRC})
+add_custom_command(TARGET prog POST_BUILD COMMENT "-----> main has been generated.")
+```
+
 
 #########################################################################################################
 # Comparison Cmake - Make
