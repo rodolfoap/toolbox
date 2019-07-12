@@ -32,7 +32,7 @@
                 "cwd": "${workspaceRoot}"
             },
             "args": [
-                "rm -rf build"
+                "rm -rf bin/ build/ lib/libfactorial.a"
             ],
             "problemMatcher": []
         }
