@@ -1,6 +1,6 @@
 # COMMANDLINEFU.COM
 
-Given that COMMANDLINEFU.COM interface has completely degraded, here are some commands that I use ocasionally. 
+Given that COMMANDLINEFU.COM interface has completely degraded, here are some of my commands that I use occasionally.
 
 See https://web.archive.org/web/20150512005555/http://www.commandlinefu.com/commands/by/rodolfoap.
 
