@@ -8,7 +8,7 @@ from gi.repository import Gtk
 class SigHandler:
 
 	def defaultLog (self, button):
-		setLabel(builder.get_object("HelloWorldLabel"), "Hello, World!")
+		builder.get_object("HelloWorldLabel").set_text("Hello, Mundo!")
 
 	def customLog (self, button):
 		customLogInput = builder.get_object("CustomLogInput").get_text()
