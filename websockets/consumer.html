@@ -11,6 +11,7 @@
 		ws.onopen = function() {};
 		ws.onmessage = function (evt) {
 			write_line(evt.data);
+			ws.send('hello from the client!');
 		};
 		ws.onclose = function() {};
 	</script>
