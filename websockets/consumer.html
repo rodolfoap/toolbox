@@ -1,0 +1,19 @@
+<html>
+<head>
+	<title>Webtail</title>
+</head>
+<body>
+	<script type="text/javascript" charset="utf-8">
+		function write_line(l) {
+			document.getElementById('data').innerHTML = '<p>' + l + '</p>';
+		}
+		var ws = new WebSocket("ws://localhost:8080/");
+		ws.onopen = function() {};
+		ws.onmessage = function (evt) {
+			write_line(evt.data);
+		};
+		ws.onclose = function() {};
+	</script>
+	<div id="data"></div>
+</body>
+</html>
