@@ -20,15 +20,27 @@ class Form:
                 self.window.show_all()
                 Gtk.main()
 
-        def print(self, id):
+        def print_text(self, id):
                 print(id+'='+self.builder.get_object(id).get_text())
 
+        def print_radio_button(self, id):
+                print(id+'='+str(self.builder.get_object(id).get_active()))
+
+        def print_combobox(self, id):
+                print(id+'='+str(self.builder.get_object(id).get_active_text()))
+
         def click_ok(self, widget):
-                self.print('data_1')
-                self.print('data_2')
-                self.print('data_3')
-                self.print('data_4')
-                self.print('data_5')
+                self.print_text('data_1')
+                self.print_text('data_2')
+
+                self.print_combobox('data_3')
+
+                self.print_radio_button('data_41')
+                self.print_radio_button('data_42')
+                self.print_radio_button('data_43')
+
+                self.print_text('data_5')
+
                 sys.exit(0)
 
         def click_exit(self, widget):
