@@ -36,8 +36,12 @@ gencppapp(){
 	e)
 	        vi -p *.cpp
 	;;
+	p)
+	        { sleep 3; echo acting...;
+	        /usr/bin/wmctrl -a MPlayer -e 0,1280,0,1280,800 -b toggle,above; } &
+	;;
 	'')
-		(mkdir -p build; cd build; cmake ..; make -j8 && echo && ./app;)
+	        (mkdir -p build; cd build; cmake ..; make -j8 && echo && ./app;)
 	;;
 	esac
 	EOF
