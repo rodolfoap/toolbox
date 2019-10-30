@@ -45,7 +45,7 @@ gencppapp(){
 	        mplayer $VIDFILE
 	;;
 	'')
-	        (mkdir -p build; cd build; cmake ..; make -j8 && echo && ./app;)
+	        (mkdir -p build; cd build; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..; make -j8 && echo && ./app;)
 	;;
 	esac
 	EOF
