@@ -1,0 +1,1 @@
+docker run --rm -i --user=$(id -u):$(id -g) --net=none -v $(pwd):/data blang/latex:ubuntu latexmk -cd -f -interaction=batchmode -pdf MAIN.tex && { evince MAIN.pdf 2>/dev/null & } || { less MAIN.log; }
