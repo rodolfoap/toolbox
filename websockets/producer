@@ -1,7 +1,0 @@
-#!/bin/bash
-
-while :; do
-	ps fax|sed 's:$:<br/>:'
-	# echo $(date +%s)
-	sleep 0.1
-done

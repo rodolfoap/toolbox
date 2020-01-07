@@ -1,0 +1,6 @@
+#!/bin/bash
+
+bzcat FranzKafka-Metamorphosis.bz2|while read line; do
+	echo ${line}|sed 's/$/<br\/>/';
+	sleep 0.5;
+done

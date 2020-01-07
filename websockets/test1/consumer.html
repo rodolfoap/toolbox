@@ -1,0 +1,23 @@
+<html>
+<head>
+	<title>Webtail</title>
+</head>
+<body>
+	<script type="text/javascript" charset="utf-8">
+		text='';
+		function write_line(l) {
+			text+='<p>' + l + '</p>';
+			document.getElementById('data').innerHTML=text;
+			window.scrollTo(0, document.body.scrollHeight);
+		}
+		var ws = new WebSocket("ws://localhost:8080/");
+		ws.onopen = function() {};
+		ws.onmessage = function (evt) {
+			write_line(evt.data);
+			ws.send('pong: '+evt.data);
+		};
+		ws.onclose=function(){};
+	</script>
+	<div id="data"></div>
+</body>
+</html>
