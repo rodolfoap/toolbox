@@ -2,6 +2,15 @@
 
 cd /app
 echo "Starting up app..."
-#npm install --save-dev electron
-npm start
-echo "Done."
+# The first time, it will install, then, it will run the app. It cannot be done
+# in a single pass, since the execution requires specific permissions, which
+# are corrected by the launcher on the second execution.
+[ -d /app/node_modules/electron ] && {
+	echo Running electron...
+	npm start
+	echo Done.
+} || {
+	echo Installing electron...
+	npm install --save-dev electron
+	echo Done. Please relaunch the container.
+}
