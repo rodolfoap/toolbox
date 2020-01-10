@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# This is required, in order for the directory to have the proper rights
+mkdir -p app/ cache/
+
+# DELETE ME
+chmod 755 app cache
+
+# Then, run the container
+docker run -ti	--net=host \
+		--env="DISPLAY" \
+		--volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
+		--privileged \
+		-v $(pwd)/cache:/home/node/.cache/ \
+		-v $(pwd)/app:/app \
+		-p 3000:3000/tcp \
+		--entrypoint=/bin/bash \
+		electron-docker

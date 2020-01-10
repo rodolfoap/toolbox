@@ -1,0 +1,7 @@
+#!/bin/bash
+
+cd /app
+echo "Starting up app..."
+#npm install --save-dev electron
+npm start
+echo "Done."

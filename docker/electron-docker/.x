@@ -1,0 +1,2 @@
+vi Dockerfile
+./build && ./start
