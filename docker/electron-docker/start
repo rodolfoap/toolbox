@@ -8,7 +8,8 @@ mkdir -p app/ cache/ && chmod 755 app cache
 #sudo chmod 4755 app/node_modules/electron/dist/chrome-sandbox
 
 # Then, run the container
-docker run -ti	--net=host \
+docker run -ti	--rm \
+		--net=host \
 		--env="DISPLAY" \
 		--volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
 		--privileged \
