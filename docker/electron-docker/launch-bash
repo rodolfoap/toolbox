@@ -15,6 +15,5 @@ docker run -ti	--rm \
 		--privileged \
 		-v $(pwd)/cache:/home/node/.cache/ \
 		-v $(pwd)/app:/app \
-		-p 3000:3000/tcp \
 		--entrypoint=/bin/bash \
 		electron-docker
