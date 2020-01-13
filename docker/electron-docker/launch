@@ -4,8 +4,8 @@
 mkdir -p app/ cache/ && chmod 755 app cache
 
 # Required by chrome-sandbox
-#sudo chown -R root:root app/node_modules/electron/dist/chrome-sandbox
-#sudo chmod 4755 app/node_modules/electron/dist/chrome-sandbox
+sudo chown -R root:root app/node_modules/electron/dist/chrome-sandbox
+sudo chmod 4755 app/node_modules/electron/dist/chrome-sandbox
 
 # Then, run the container
 docker run -ti	--rm \
@@ -16,5 +16,4 @@ docker run -ti	--rm \
 		-v $(pwd)/cache:/home/node/.cache/ \
 		-v $(pwd)/app:/app \
 		-p 3000:3000/tcp \
-		--entrypoint=/bin/bash \
 		electron-docker
