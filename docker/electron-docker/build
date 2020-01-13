@@ -1,7 +1,8 @@
 #!/bin/bash
 set -x
-chmod 755 entrypoint
 git clone https://github.com/electron/electron-quick-start app || true
+# Disable sandbox
+sed -i '/webPreferences/a\      sandbox: false,' app/main.js
 docker build \
 	--build-arg UID=$(id -u) \
 	--build-arg GID=$(id -g) \
