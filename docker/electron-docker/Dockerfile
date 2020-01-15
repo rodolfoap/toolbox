@@ -1,6 +1,6 @@
 FROM		node
 
-RUN 		apt update && apt install -y libx11-xcb-dev libxtst6 libnss3-dev libgtk-3-0 libxss1 libasound2
+RUN 		apt-get update && apt-get install -y libx11-xcb-dev libxtst6 libnss3-dev libgtk-3-0 libxss1 libasound2
 
 ARG		UID
 ARG		GID

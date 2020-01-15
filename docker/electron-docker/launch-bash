@@ -1,21 +1,19 @@
 #!/bin/bash
 
 # This is required, in order for the directory to have the proper rights
-mkdir -p app/ cache/
+mkdir -p app/ cache/ && chmod 755 app cache
 
-# DELETE ME
-chmod 755 app cache
-
-# Buggy
+# Required by chrome-sandbox
 sudo chown -R root:root app/node_modules/electron/dist/chrome-sandbox
 sudo chmod 4755 app/node_modules/electron/dist/chrome-sandbox
 
 # Then, run the container
-docker run -ti	--net=host \
+docker run -ti	--rm \
+		--net=host \
 		--env="DISPLAY" \
 		--volume="$HOME/.Xauthority:/root/.Xauthority:rw" \
 		--privileged \
 		-v $(pwd)/cache:/home/node/.cache/ \
 		-v $(pwd)/app:/app \
-		-p 3000:3000/tcp \
+		--entrypoint=/bin/bash \
 		electron-docker
