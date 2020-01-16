@@ -1,7 +1,7 @@
 # sandbox
 Just some programming tests, from where I pick code chunks to make new stuff.
 
-![Example Code](https://raw.githubusercontent.com/rodolfoap/sandbox/master/processing/cosine/curve.png)
+![Example Code](https://raw.githubusercontent.com/rodolfoap/sandbox/master/processing/cosine/curve.jpg)
 (see processing/cosine/)
 
 ![Example Code](https://raw.githubusercontent.com/rodolfoap/sandbox/master/processing/fractal/fractal.png)
