@@ -1,0 +1,7 @@
+#!/bin/bash
+
+docker run -ti --rm --name=joplin \
+	--net="host" \
+	joplin
+
+#-v /home/rodolfoap/.dropbox/cf:/dbox/.dropbox \
