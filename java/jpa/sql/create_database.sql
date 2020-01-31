@@ -1,0 +1,8 @@
+DROP DATABASE IF EXISTS notes_eleves;
+CREATE DATABASE IF NOT EXISTS notes_eleves;
+FLUSH PRIVILEGES;
+
+DROP USER IF EXISTS dvp;
+CREATE USER dvp IDENTIFIED BY  'hello';
+GRANT USAGE ON * . * TO 'dvp'@'%';
+GRANT SELECT , INSERT , UPDATE ON  `notes\_eleves` . * TO  'dvp'@'%';
