@@ -11,8 +11,8 @@ public class Planner2MSProject
    {
       UniversalProjectReader reader = new UniversalProjectReader();
       ProjectFile project = reader.read("/home/rodolfoap/project.planner");
-      
+
       MSPDIWriter writer = new MSPDIWriter();
-      writer.write(project, "/home/rodolfoap/project.msp"); 
+      writer.write(project, "/home/rodolfoap/project.msp.xml");
    }
 }
