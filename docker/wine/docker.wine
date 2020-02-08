@@ -1,0 +1,23 @@
+#!/bin/bash
+set -x
+WINEROOT=~/.wine_common
+
+dockerwine(){
+	#export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib32"
+	#export LD_PRELOAD=/usr/lib32/libGL.so.1
+	#export LD_PRELOAD=/usr/lib/i386-linux-gnu/dri/swrast_dri.so
+	docker run -it --rm \
+	--env="DISPLAY" \
+	--env="PULSE_SERVER=/tmp/pulse-socket" \
+	--env="WINEARCH=win32" \
+	--volume="${XAUTHORITY:-${HOME}/.Xauthority}:/root/.Xauthority:ro" \
+	--volume="/tmp/.X11-unix:/tmp/.X11-unix" \
+	--volume="/tmp/pulse-socket:/tmp/pulse-socket" \
+	--volume="/etc/localtime:/etc/localtime:ro" \
+	--device=/dev/snd:/dev/snd \
+	--volume="${WINEROOT}:/home/wineuser" \
+	--hostname="$(hostname)" \
+	--name="wine" \
+	scottyhardy/docker-wine:latest "$@"
+}
+dockerwine wine c:/windows/explorer.exe
