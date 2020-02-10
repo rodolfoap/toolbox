@@ -1,17 +1,34 @@
 VIDFILE=../vid/003-ExceptionsBasics.mp4
+execute(){
+	./app
+}
+build(){
+	[ -d build/ ] && {
+		pushd build &> /dev/null;
+	} || {
+		mkdir build;
+		pushd build &> /dev/null;
+		cmake .. -Wdev;
+	}
+	make -j8; STATUS=$?
+	popd &> /dev/null;
+	[ $STATUS == 0 ] && echo [100%] $(ls -l app) || echo [ERROR] Compilation error.
 
-case "$1" in
-e)
-	vi -p *.cpp *.h
-;;
-p)
+playvid(){
 	{	sleep 3; echo acting...;
 		/usr/bin/wmctrl -a MPlayer -e 0,1280,0,1280,800;
 		/usr/bin/wmctrl -a MPlayer -b toggle,above;
 	} &
 	mplayer $VIDFILE
-;;
-'')
-	(mkdir -p build; cd build; cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..; make -j8 && echo && ./app;)
-;;
+}
+case "$1" in
+	"")
+		[ -f app ] || build;
+		execute
+	;;
+	e)
+		vi -O app.cpp
+		build;
+		execute;
+	;;
 esac
