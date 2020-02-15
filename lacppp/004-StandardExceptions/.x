@@ -1,8 +1,8 @@
 VIDFILE=../vid/003-ExceptionsBasics.mp4
 execute(){
-echo
+echo '---'
 	./app
-echo
+echo '---'
 }
 build(){
 	[ -d build/ ] && {
