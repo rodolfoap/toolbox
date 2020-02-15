@@ -1,28 +1,20 @@
 #include <iostream>
 #include <exception>
 
-void mightGoWrong(){
-	bool error=true;
-	if(error) throw std::logic_error("Throwing a std::logic_error()");
-	if(error) throw std::string("Throwing a std::string()");
-	if(error) throw "Throwing a char const *.";
-	if(error) throw 8;
-}
+class CanGoWrong{
+public:
+	CanGoWrong(){
+		char *pMemory=new char[999999999999];
+		delete [] pMemory;
+	}
+};
 
 int main(){
 	try{
-		mightGoWrong();
-	} catch(int e){
-		std::cout << "[ERROR] " << e << std::endl;
-	} catch(char const *e){
-		std::cout << "[ERROR] " << e << std::endl;
-	} catch(std::string &e){
-		std::cout << "[ERROR] " << e << std::endl;
-	} catch(std::exception &e){
-		std::cout << "[ERROR] " << e.what() << std::endl;
+		CanGoWrong wrong;
+	} catch(std::bad_alloc &e){
+		std::cerr << "[ERROR] " << e.what() << std::endl;
 	}
-
-	std::cout << "Still running" << std::endl;
-
+	std::cerr << "[OK] Still running." << std::endl;
 	return 0;
 }
