@@ -1,5 +1,5 @@
 gencppapp(){
-	cp -rv 000-Model/ $1/
+	cp -rvd 000-Model/ $1/
 	cd $1
 }
 
