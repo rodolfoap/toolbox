@@ -1,6 +1,5 @@
-VIDFILE=../vid/003-ExceptionsBasics.mp4
+VIDFILE=../vid/$(basename $(pwd)).mp4
 execute(){
-echo '--'
 	./app
 }
 build(){
@@ -31,6 +30,7 @@ case "$1" in
 	e)
 		vi -O app.cpp
 		build;
+		echo '---'
 		execute;
 	;;
 	p)
