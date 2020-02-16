@@ -1,1 +1,1 @@
-git clean -xdf
+git clean -xdf [0-9]*
