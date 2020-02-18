@@ -1,9 +1,9 @@
 #include <iostream>
 #include <exception>
 
-class CanGoWrong{
+class Wrong{
 public:
-	CanGoWrong(){
+	Wrong(){
 		char *pMemory=new char[999999999999];
 		delete [] pMemory;
 	}
@@ -11,7 +11,7 @@ public:
 
 int main(){
 	try{
-		CanGoWrong wrong;
+		Wrong wrong;
 	} catch(std::bad_alloc &e){
 		std::cerr << "[ERROR] " << e.what() << std::endl;
 	}
