@@ -1,0 +1,7 @@
+Replace MAIN.tex
+
+Run:
+	git init
+	acommit
+	e # (edit)
+	x # (execute)
