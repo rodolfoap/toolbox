@@ -1,9 +1,10 @@
 VIDFILE=../vid/$(basename $(pwd)).mp4
 execute(){
-	./app
+	[ -f app ] && ./app
 	[ -f data.temp ] && hexdump -C data.temp
 }
 build(){
+	rm -f app;
 	[ -d build/ ] && {
 		pushd build &> /dev/null;
 	} || {
