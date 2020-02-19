@@ -1,6 +1,7 @@
 VIDFILE=../vid/$(basename $(pwd)).mp4
 execute(){
 	./app
+	[ -f data.temp ] && hexdump -C data.temp
 }
 build(){
 	[ -d build/ ] && {
