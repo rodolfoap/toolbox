@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.20.0 -->
+<!-- Generated with glade 3.22.1 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
-  <object class="GtkBox" id="cont">
+  <object class="GtkBox" id="main_gtk_box">
     <property name="width_request">200</property>
     <property name="height_request">200</property>
     <property name="visible">True</property>
@@ -12,11 +12,12 @@
       <object class="GtkLabel" id="display_label">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="label" translatable="yes">ss</property>
         <property name="wrap">True</property>
         <attributes>
           <attribute name="weight" value="bold"/>
-          <attribute name="scale" value="5"/>
-          <attribute name="foreground" value="#a4a400000000"/>
+          <attribute name="scale" value="1"/>
+          <attribute name="foreground" value="#ffffffffffff"/>
         </attributes>
       </object>
       <packing>
