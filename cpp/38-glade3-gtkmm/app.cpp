@@ -1,15 +1,15 @@
 #include <gtkmm.h>
 
-class HelloWindow: public Gtk::ApplicationWindow {
+class FrmMain: public Gtk::Window {
 	Gtk::Box *cont;
 	Glib::RefPtr<Gtk::Label> display_label;
 	Glib::RefPtr<Gtk::Button> display_btn;
-	Glib::RefPtr<Gtk::Builder> ui;
+	Glib::RefPtr<Gtk::Builder> builder;
 public:
-	HelloWindow(): ui{Gtk::Builder::create_from_file("simple.glade")} {
-		ui->get_widget<Gtk::Box>("cont", cont);
-		display_label = Glib::RefPtr<Gtk::Label>::cast_dynamic( ui->get_object("display_label"));
-		display_btn = Glib::RefPtr<Gtk::Button>::cast_dynamic( ui->get_object("display_button"));
+	FrmMain(): builder{Gtk::Builder::create_from_file("simple.glade")} {
+		builder->get_widget<Gtk::Box>("cont", cont);
+		display_label = Glib::RefPtr<Gtk::Label>::cast_dynamic( builder->get_object("display_label"));
+		display_btn = Glib::RefPtr<Gtk::Button>::cast_dynamic( builder->get_object("display_button"));
 		display_btn->signal_clicked().connect( [this]() { display_label->set_text("Hello World"); });
 		add(*cont);
 		set_title("Simple Gtk::Builder demo");
@@ -19,17 +19,12 @@ public:
 };
 
 int main(int argc, char *argv[]) {
-	auto app = Gtk::Application::create( argc, argv, "org.gtkmm.example.HelloApp");
-	HelloWindow hw;
+	auto app=Gtk::Application::create( argc, argv, "org.gtkmm.example.HelloApp");
+	FrmMain hw;
 	return app->run(hw);
 }
 
 /*
-#include <iostream>
-#include <gtkmm.h>
-using namespace std;
-using namespace Gtk;
-
 class FrmMain : public Gtk::Window{
 protected:
         Glib::RefPtr<Gtk::Builder> builder;
