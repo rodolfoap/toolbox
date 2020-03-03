@@ -2,18 +2,18 @@
 
 class FrmMain: public Gtk::Window {
 	Gtk::Box *cont;
-	Glib::RefPtr<Gtk::Label> display_label;
-	Glib::RefPtr<Gtk::Button> display_btn;
+        Gtk::Label *display_label;
+        Gtk::Button *display_button;
 	Glib::RefPtr<Gtk::Builder> builder;
 public:
 	FrmMain(): builder{Gtk::Builder::create_from_file("simple.glade")} {
 		builder->get_widget<Gtk::Box>("cont", cont);
-		display_label = Glib::RefPtr<Gtk::Label>::cast_dynamic( builder->get_object("display_label"));
-		display_btn = Glib::RefPtr<Gtk::Button>::cast_dynamic( builder->get_object("display_button"));
-		display_btn->signal_clicked().connect( [this]() { display_label->set_text("Hello World"); });
+	        builder->get_widget("display_label", display_label);
+	        builder->get_widget("display_button", display_button);
+		display_button->signal_clicked().connect( [this]() { display_label->set_text("Hello World"); });
 		add(*cont);
-		set_title("Simple Gtk::Builder demo");
-		set_default_size(400, 400);
+		//set_title("Simple Gtk::Builder demo");
+		//set_default_size(400, 400);
 		show_all();
 	}
 };
