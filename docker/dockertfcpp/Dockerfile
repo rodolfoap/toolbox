@@ -1,4 +1,5 @@
 FROM floopcz/tensorflow_cc:ubuntu
+ENV DEBIAN_FRONTEND noninteractive
 WORKDIR /tf/models/research
 ENV PYTHONPATH=/tf/models/research:/tf/models/research/slim
 RUN apt-get -y update && apt -y install git curl unzip build-essential cmake python-pip vim
