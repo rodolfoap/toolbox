@@ -1,7 +1,7 @@
 int test_four() {
-  return 4;
+	return 4;
 }
 
 int test_five() {
-  return 5;
+	return 5;
 }
