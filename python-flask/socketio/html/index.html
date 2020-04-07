@@ -1,0 +1,15 @@
+<!DOCTYPE html><html><head><script src="html/jquery-3.3.1.min.js"></script><script src="html/socket.io.min.js"></script><script>
+$(document).ready(function(){
+	var socket=io.connect('http://'+document.domain+':'+location.port+'/log');
+	var logs=[];
+	function print(html){document.body.innerHTML=html;window.scrollTo(0,document.body.scrollHeight);}
+	socket.on('log', function(log){
+		html='';
+		console.log("Received: "+log.data);
+		if(logs.length>=100){logs.shift();}
+		logs.push(log.data);
+		for(var i=0; i<logs.length; i++){html=html+'<p>'+logs[i].toString()+'</p>';}
+		print(html)
+	});
+});
+</script></head><body></body></html>
