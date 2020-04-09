@@ -1,9 +1,10 @@
+APPLICATION=model.py
 case "$1" in
 	e)
-		vi ./npyscreen.py
-		./npyscreen.py
+		vi ./${APPLICATION}
+		./${APPLICATION}
 	;;
 	""|*)
-		./npyscreen.py
+		./${APPLICATION}
 	;;
 esac
