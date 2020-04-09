@@ -9,7 +9,7 @@ class MainForm(nps.Form):
 			self.values=yaml.load(yamlfile)
 		self.a = self.add(nps.TitleText, name="Text:", value=self.values['Test']['Name'])
 		self.b = self.add(nps.TitleFilename, name="Filename:", value=self.values['Test']['Filename'])
-		self.c = self.add(nps.TitleFilenameCombo, name="Filename2:", value=self.values['Test']['Filename'])
+		self.c = self.add(nps.TitleFilenameCombo, name="Filename2:", value=self.values['Test']['Filename2'])
 		self.d = self.add(nps.TitleDateCombo, name="Date:", value=self.values['Test']['Date'])
 		self.e = self.add(nps.TitleSliderPercent, accuracy=0, out_of=12, name="Slider", value=self.values['Test']['Slider'])
 		self.f = self.add(nps.MultiLineEdit, max_height=5, rely=9, value=self.values['Test']['Multiline'])

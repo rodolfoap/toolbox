@@ -1,16 +1,18 @@
 Test:
-  Date: 2020-04-23
-  Filename: /home/rodolfoap/git/toolbox/python-forms/
-  Filename2: /home/rodolfoap/git/toolbox/python-forms/
-  Multiline: 'try typing here!
+  Date: 2020-04-17
+  Filename: /home/rodolfoap/git/toolbox/python-forms/data.yaml
+  Filename2: /home/rodolfoap/git/toolbox/python-forms/npyscreen.py
+  Multiline: 'try typing here! Mutiline text, press ^R to reformat.
 
-    Mutiline text, press ^R to reformat.
 
-    popop'
+    turnoc asda asd
+
+
+    asdas'
   Multiselect:
-  - 0
   - 2
+  - 0
   Name: adasdas
   SelectOne:
-  - 0
-  Slider: 5.0
+  - 1
+  Slider: 1.0
