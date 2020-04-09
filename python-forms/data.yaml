@@ -1,18 +1,22 @@
-Test:
-  Date: 2020-04-17
-  Filename: /home/rodolfoap/git/toolbox/python-forms/data.yaml
-  Filename2: /home/rodolfoap/git/toolbox/python-forms/npyscreen.py
-  Multiline: 'try typing here! Mutiline text, press ^R to reformat.
+MultiLineEdit: 'one
 
+  duo
 
-    turnoc asda asd
+  trio
 
+  carto
 
-    asdas'
-  Multiselect:
-  - 2
-  - 0
-  Name: adasdas
-  SelectOne:
-  - 1
-  Slider: 1.0
+  quiton
+
+  serxtor'
+TitleDateCombo: 2020-04-16
+TitleFilename: /home/rodolfoap/git/toolbox/python-forms
+TitleFilenameCombo: /home/rodolfoap/git/toolbox/python-forms/optlist.py
+TitleMultiSelect:
+- 0
+- 2
+TitleSelectOne:
+- 1
+TitleSliderPercent: 1.0
+TitleText: Second Text
+Titulo: First text
