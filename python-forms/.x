@@ -1,7 +1,8 @@
 APPLICATION=optlist.py
+APPLICATION=model.py
 case "$1" in
 	e)
-		vi -O ./${APPLICATION} forms.py
+		vi -O ./${APPLICATION}
 		./${APPLICATION}
 	;;
 	""|*)

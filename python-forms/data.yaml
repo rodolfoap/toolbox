@@ -1,0 +1,16 @@
+Test:
+  Date: 2020-04-23
+  Filename: /home/rodolfoap/git/toolbox/python-forms/
+  Filename2: /home/rodolfoap/git/toolbox/python-forms/
+  Multiline: 'try typing here!
+
+    Mutiline text, press ^R to reformat.
+
+    popop'
+  Multiselect:
+  - 0
+  - 2
+  Name: adasdas
+  SelectOne:
+  - 0
+  Slider: 5.0
