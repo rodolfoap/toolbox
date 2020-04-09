@@ -1,18 +1,23 @@
 Test:
   Date: 2020-04-17
-  Filename: /home/rodolfoap/git/toolbox/python-forms/data.yaml
-  Filename2: /home/rodolfoap/git/toolbox/python-forms/npyscreen.py
-  Multiline: 'try typing here! Mutiline text, press ^R to reformat.
+  Filename: /home/rodolfoap/git/toolbox/c/00-keywords/app.c
+  Filename2: /home/rodolfoap/git/toolbox/python-forms/optlist.py
+  Multiline: 'This is the text
 
+    Multiline Text
 
-    turnoc asda asd
+    Perfect text
 
+    Unique text
 
-    asdas'
+    Ordinary text
+
+    But exceptional text'
   Multiselect:
   - 2
   - 0
-  Name: adasdas
-  SelectOne:
   - 1
-  Slider: 1.0
+  Name: This is the text
+  SelectOne:
+  - 2
+  Slider: 2.0
