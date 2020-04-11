@@ -9,7 +9,8 @@ getAction(){
 }
 
 case $(getAction) in
-	1)	./test_case_editor.py;
+	1)	./menu_editor.py test_cases 'Test Case Definition'
+		./test_case_editor.py; $TESTCASE
 		;;
 	2)	echo Test Campaign Definition
 		;;
