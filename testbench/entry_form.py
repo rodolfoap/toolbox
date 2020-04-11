@@ -2,7 +2,7 @@ import npyscreen as nps
 import yaml
 import re
 
-class MainForm(nps.Form):
+class Entry_Form(nps.Form):
 	def __init__(self, name, file_name):
 		self.fields={}
 		self.values={}
@@ -14,7 +14,7 @@ class MainForm(nps.Form):
 				if re.search("skip", tag): del self.values[tag]
 		except FileNotFoundError:
 			pass
-		super(MainForm, self).__init__(name)
+		super(Entry_Form, self).__init__(name)
 
 	def create(self):
 		for tag in self.fields:
