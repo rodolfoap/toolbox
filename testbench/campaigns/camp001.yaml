@@ -1,0 +1,10 @@
+Date: 2020-04-11
+Description: First test campaign
+Id: c0001
+Name: Phase1
+Responsible: RodolfoAP
+Types:
+- 0
+- 1
+- 2
+- 3

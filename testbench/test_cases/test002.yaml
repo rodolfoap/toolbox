@@ -1,7 +1,7 @@
 TestDate: 2020-04-10
 TestDescription: FIELD1
 TestId: T001
-TestLauncherFilename: /home/rodolfoap/git/toolbox/python-forms/mo.py
+TestLauncherFilename: /usr/local/bin/protoc
 TestReqList:
 - 0
 - 1
