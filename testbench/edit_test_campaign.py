@@ -2,12 +2,13 @@
 import npyscreen as nps
 import sys
 from entry_form import Entry_Form
+from os import listdir
 
 class Servc(nps.NPSAppManaged):
 	def onStart(self):
 
-		test_types=["Unit Test", "Integration Test", "Validation Test", "Model Test"]
 		f=Entry_Form(name='Test Campaing', file_name=sys.argv[1])
+		test_types=listdir('test_types'); test_types.sort()
 
 		f.add_field('Id', nps.TitleText, name="Campaing Id")
 		f.add_field('Name', nps.TitleText, name="Campaing Name")
