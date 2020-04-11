@@ -7,7 +7,7 @@ class Servc(nps.NPSAppManaged):
 
 		test_types=["Unit Test", "Integration Test", "Validation Test", "Model Test"]
 		test_rqmts=["Req1", "Req2", "Req3"]
-		f=Entry_Form(name='Test Case Definition', file_name='data.yaml')
+		f=Entry_Form(name='Test Case Definition', file_name='test_cases/test001.yaml')
 		f.add_field('TestId', nps.TitleText, name="Test Id")
 		f.add_field('TestDate', nps.TitleDateCombo, name="Date")
 
