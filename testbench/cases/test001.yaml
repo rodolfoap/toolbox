@@ -23,6 +23,6 @@ TestReqList:
 - 3
 TestType:
 - 2
-- 3
+- 0
 TestValidationCriteria: The test PASSes if all the packets arrive and the sent packets
   are the same as the received packets.

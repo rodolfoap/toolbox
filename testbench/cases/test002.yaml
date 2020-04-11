@@ -6,6 +6,6 @@ TestReqList:
 - 0
 - 1
 TestType:
-- 0
 - 2
+- 3
 TestValidationCriteria: FIELD2

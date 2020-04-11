@@ -15,8 +15,8 @@ class Servc(nps.NPSAppManaged):
 		f.add_field('Responsible', nps.TitleText, name="Responsible")
 		f.add_field('Date', nps.TitleDateCombo, name="Date")
 		f.add_field('skip1', nps.FixedText, value="Description")
-		f.add_field('Description', nps.MultiLineEdit, max_height=8, relx=4)
-		f.add_field('Types', nps.TitleMultiSelect, max_height=4, name="Include Types            ",
+		f.add_field('Description', nps.MultiLineEdit, max_height=6, relx=4)
+		f.add_field('Types', nps.TitleMultiSelect, max_height=6, name="Include Types            ",
 				values=test_types, scroll_exit=True)
 
 		self.registerForm('MAIN', f)
