@@ -1,17 +1,20 @@
 ls -1 test_types|sort|cat -n|awk '{a=$1-1; print a, $2}'|while read CODE TESTYPE; do
-	echo -n >test_types/$TESTYPE
+	:>test_types/$TESTYPE
 	for TEST in cases/*.yaml; do
-		yq r $TEST TestType|grep -q $CODE && {
-			echo $TEST|sed 's:.*/::' >> test_types/$TESTYPE
-		}
+		yq r $TEST TestType|grep -q $CODE && { echo $TEST|sed 's:.*/::' >> test_types/$TESTYPE; }
 	done
-	echo test_types/$TESTYPE;
-	sed 's:^:\t:' test_types/$TESTYPE
 done
 
+rm results/*
 cat test_types/*|sort|uniq|while read TEST; do
-	echo RUNNING TEST $TEST
-	yq r cases/$TEST TestLauncherFilename > results/${TEST%.yaml}.result
+	LAUNCHER=$(yq r cases/$TEST TestLauncherFilename)
+	{
+		echo [RUNNING] $TEST:$LAUNCHER
+		$LAUNCHER
+		[ $? == 0 ] && STATUS=PASS || STATUS=FAIL;
+		echo TEST_STATUS=$STATUS > results/${TEST%.yaml}.result
+	} |& tee results/${TEST%.yaml}.log
+	grep "^..*=..*$" results/${TEST%.yaml}.log > results/${TEST%.yaml}.result
 done
 
 return
