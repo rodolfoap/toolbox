@@ -1,7 +1,7 @@
 TestDate: 2020-04-10
 TestDescription: FIELD1
 TestId: T001
-TestLauncherFilename: /usr/local/bin/protoc
+TestLauncherFilename: /home/rodolfoap/git/toolbox/testbench/tests/test_fail.bash
 TestReqList:
 - 0
 - 1

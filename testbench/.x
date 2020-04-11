@@ -1,3 +1,5 @@
+
+# Generates the lists of tests to run
 ls -1 test_types|sort|cat -n|awk '{a=$1-1; print a, $2}'|while read CODE TESTYPE; do
 	:>test_types/$TESTYPE
 	for TEST in cases/*.yaml; do
@@ -5,7 +7,7 @@ ls -1 test_types|sort|cat -n|awk '{a=$1-1; print a, $2}'|while read CODE TESTYPE
 	done
 done
 
-rm results/*
+rm -rf results; mkdir results
 cat test_types/*|sort|uniq|while read TEST; do
 	LAUNCHER=$(yq r cases/$TEST TestLauncherFilename)
 	{
@@ -14,7 +16,7 @@ cat test_types/*|sort|uniq|while read TEST; do
 		[ $? == 0 ] && STATUS=PASS || STATUS=FAIL;
 		echo TEST_STATUS=$STATUS > results/${TEST%.yaml}.result
 	} |& tee results/${TEST%.yaml}.log
-	grep "^..*=..*$" results/${TEST%.yaml}.log > results/${TEST%.yaml}.result
+	grep "^[^ ]*=[^ ]*$" results/${TEST%.yaml}.log >> results/${TEST%.yaml}.result
 done
 
 return

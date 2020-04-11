@@ -16,7 +16,7 @@ TestDescription: 'This testset assesses the performance of the KafkaPB component
 
   package is verified, and the full count.'
 TestId: Messaging001
-TestLauncherFilename: /home/rodolfoap/git/o/messaging/messaging-python/test/consumerproducer.bash
+TestLauncherFilename: /home/rodolfoap/git/toolbox/testbench/tests/test_pass.bash
 TestReqList:
 - 1
 - 8
