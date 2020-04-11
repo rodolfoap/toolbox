@@ -1,5 +1,6 @@
 import npyscreen as nps
 import yaml
+import re
 
 class MainForm(nps.Form):
 	def __init__(self, name, file_name):
@@ -9,6 +10,8 @@ class MainForm(nps.Form):
 		try:
 			with open(self.file_name, 'r') as yamlfile:
 				self.values=yaml.load(yamlfile)
+			for tag in self.values:
+				if re.search("skip", tag): del self.values[tag]
 		except FileNotFoundError:
 			pass
 		super(MainForm, self).__init__(name)
@@ -24,7 +27,7 @@ class MainForm(nps.Form):
 	def afterEditing(self):
 		values={}
 		for tag in self.fields:
-			values[tag]=self.fields[tag].value
+			if not re.search("skip", tag): values[tag]=self.fields[tag].value
 		with open(self.file_name, 'w') as yamlfile:
 			yaml.dump(values, yamlfile, default_flow_style=False)
 		self.parentApp.setNextForm(None)

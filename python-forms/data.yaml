@@ -1,22 +1,11 @@
-MultiLineEdit: 'one
-
-  duo
-
-  trio
-
-  carto
-
-  quiton
-
-  serxtor'
-TitleDateCombo: 2020-04-16
-TitleFilename: /home/rodolfoap/git/toolbox/python-forms
-TitleFilenameCombo: /home/rodolfoap/git/toolbox/python-forms/optlist.py
-TitleMultiSelect:
+TestDate: 2020-04-10
+TestDescription: FIELD1
+TestId: T001
+TestLauncherFilename: /home/rodolfoap/git/toolbox/python-forms/model.py
+TestReqList:
+- 0
+- 1
+TestType:
 - 0
 - 2
-TitleSelectOne:
-- 1
-TitleSliderPercent: 1.0
-TitleText: Second Text
-Titulo: First text
+TestValidationCriteria: FIELD2

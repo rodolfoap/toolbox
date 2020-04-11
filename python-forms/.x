@@ -2,7 +2,7 @@ APPLICATION=optlist.py
 APPLICATION=model.py
 case "$1" in
 	e)
-		vi -O ./${APPLICATION}
+		vi -p ./${APPLICATION} mainform.py
 		./${APPLICATION}
 	;;
 	""|*)
