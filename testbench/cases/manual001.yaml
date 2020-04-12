@@ -16,7 +16,7 @@ TestDescription: 'This testset assesses the functionalities of the IHM component
 
   package is verified, and the full count.'
 TestId: Manual001
-TestLauncherFilename: /home/rodolfoap/git/toolbox/testbench/tests/test_manual.py
+TestLauncherFilename: /home/rodolfoap/git/toolbox/testbench/tests/manual_ihm.py
 TestReqList:
 - 1
 - 8
