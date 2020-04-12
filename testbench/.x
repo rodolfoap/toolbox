@@ -1,11 +1,19 @@
+# Select the campaign
+CAMPAIGN=campaigns/camp001.yaml
 
-# Generates the lists of tests to run
+# Classify tests in categories: the file test_types/Unit_Tests will list all tests that are marked as unit tests.
 ls -1 test_types|sort|cat -n|awk '{a=$1-1; print a, $2}'|while read CODE TESTYPE; do
 	:>test_types/$TESTYPE
 	for TEST in cases/*.yaml; do
 		yq r $TEST TestType|grep -q $CODE && { echo $TEST|sed 's:.*/::' >> test_types/$TESTYPE; }
 	done
 done
+
+# Filter the types that can be executed for this campaign
+yq r $CAMPAIGN Types|awk '{print $2}'>.runtypes.temp
+ls test_types|sort|cat -n|grep -f .runtypes.temp>.runlist.temp
+
+
 
 rm -rf results; mkdir results
 cat test_types/*|sort|uniq|while read TEST; do

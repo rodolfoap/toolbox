@@ -23,4 +23,15 @@ class Servc(nps.NPSAppManaged):
 		self.registerForm('MAIN', self.form)
 
 if __name__=='__main__':
-	Servc().run()
+	s=Servc()
+	s.run()
+	tests_to_run=[]
+	for case in listdir('cases'):
+		with open('cases/'+case, 'r') as yamlfile:
+			values=yaml.load(yamlfile)
+			if(len([value for value in s.form.fields['Types'].value if value in values['TestType']])>0):
+				tests_to_run.append(case)
+	print('TESTS TO RUN: ', tests_to_run);
+	with open('.runnable.list', 'w') as filehandle:
+		filehandle.writelines("%s\n" % place for place in tests_to_run)
+
