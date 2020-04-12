@@ -1,7 +1,7 @@
 TestDate: 2020-04-10
 TestDescription: FIELD1
 TestId: Packaging002
-TestLauncherFilename: /home/rodolfoap/git/toolbox/testbench/tests/test_fail.bash
+TestLauncherFilename: /home/rodolfoap/git/toolbox/testbench/tests/test_random.bash
 TestReqList:
 - 0
 - 1

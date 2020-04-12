@@ -11,3 +11,6 @@ class Status():
 
 	def getValue(self, key):
 		return self.variables[key]
+
+	def getValues(self):
+		return self.variables
