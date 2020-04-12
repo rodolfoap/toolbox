@@ -26,3 +26,4 @@ TestType:
 - 0
 TestValidationCriteria: The test PASSes if all the packets arrive and the sent packets
   are the same as the received packets.
+TestValidatorFilename: /home/rodolfoap/git/toolbox/testbench/checks/passfail.py

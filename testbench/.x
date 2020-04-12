@@ -1,6 +1,6 @@
-APPLICATION=edit_test_campaign.py
-OTHERFILES=
-PARAMETERS=campaigns/camp001.yaml
+APPLICATION=checks/check001.py
+OTHERFILES=lib/status.py
+PARAMETERS=results/test001.status
 case "$1" in
 	e)
 		vi -p ${APPLICATION} ${OTHERFILES}

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import npyscreen as nps
 import sys
+sys.path.append('lib/')
 import yaml
 from entry_form import Entry_Form
 from os import listdir

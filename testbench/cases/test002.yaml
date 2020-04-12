@@ -9,3 +9,4 @@ TestType:
 - 2
 - 3
 TestValidationCriteria: FIELD2
+TestValidatorFilename: /home/rodolfoap/git/toolbox/testbench/checks/passfail.py

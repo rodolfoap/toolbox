@@ -12,4 +12,4 @@ echo VARIABLE1=0
 echo VARIABLE2=This is a test
 
 # Rule: Tests should report the PASS/FAIL status using the EXIT VALUE
-false
+[ $RANDOM -lt 16384 ] && true || false

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import npyscreen as nps
 import sys
+sys.path.append('lib/')
 from entry_form import Entry_Form
 from os import listdir
 
@@ -19,11 +20,12 @@ class Servc(nps.NPSAppManaged):
 
 		f.add_field('skip2', nps.FixedText, value="Validation Criteria")
 		f.add_field('TestValidationCriteria', nps.MultiLineEdit, max_height=6, relx=4)
-		f.add_field('TestLauncherFilename', nps.TitleFilenameCombo, name="Test Launcher")
 		f.add_field('TestType', nps.TitleMultiSelect, max_height=6,
 				name="Test Type", values=test_types, scroll_exit=True)
 		f.add_field('TestReqList', nps.TitleMultiSelect, max_height=6,
 				name="Applicable Requirements", values=test_rqmts, scroll_exit=True)
+		f.add_field('TestLauncherFilename', nps.TitleFilenameCombo, name="Test Launcher")
+		f.add_field('TestValidatorFilename', nps.TitleFilenameCombo, name="Check Script")
 
 		self.registerForm('MAIN', f)
 
