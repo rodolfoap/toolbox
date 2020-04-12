@@ -1,0 +1,29 @@
+TestDate: 2020-04-24
+TestDescription: 'This testset assesses the functionalities of the IHM component.
+
+
+  KafkaPB is a class (on the OOP sense) which provides several methods to receive
+  and send data to other plugins or to Smite2.
+
+
+  Several examples are available, on the repository below.
+
+  The current test sets up two KafkaPB objects, one to send data and another to receive
+  data. Data (20 packets) is sent to a Kafka
+
+  topic with the output object and collected from the same topic. Since packages arrive
+  in order, just the UUID of the first
+
+  package is verified, and the full count.'
+TestId: Manual001
+TestLauncherFilename: /home/rodolfoap/git/toolbox/testbench/tests/test_manual.py
+TestReqList:
+- 1
+- 8
+- 3
+- 7
+TestType:
+- 2
+TestValidationCriteria: The test PASSes if all the packets arrive and the sent packets
+  are the same as the received packets.
+TestValidatorFilename: /home/rodolfoap/git/toolbox/testbench/checks/manualpass.py

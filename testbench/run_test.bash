@@ -20,6 +20,6 @@ echo [RUNTEST] STARTED: $TEST
 	echo TEST_STATUS=$TEST_STATUS > $RESULT
 } |& tee $LOGFILE
 echo [RUNTEST] FINISHED: $TEST
-grep "^[^ ]*=[^ ]*$" $LOGFILE >> $RESULT
+grep "^[^ ]*=.*$" $LOGFILE >> $RESULT
 echo $RESULT:
 sed 's/^/\t/' $RESULT

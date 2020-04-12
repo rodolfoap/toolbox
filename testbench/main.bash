@@ -8,6 +8,7 @@ dialog --clear --title "Test Bench" --menu "Choose operation:" 20 50 13 \
 	"rtc" "Run Test Case" \
 	"ecp" "Edit Campaign" \
 	"rcp" "Run Campaign" \
+	"ext" "Exit" \
 2> .dialog || exitFn
 
 case $(cat .dialog) in
@@ -29,8 +30,11 @@ case $(cat .dialog) in
 	;;
 'rcp')
 	dialog --clear --title "Test Bench/Run Campaign" --menu "Choose:" 20 50 13 \
-		$(ls cases|sed -r 's/(.*)/\1 \1/') 2> .dialog || exitFn
+		$(ls campaigns|sed -r 's/(.*)/\1 \1/') 2> .dialog || exitFn
 		clear && ./run_campaign.bash campaigns/$(cat .dialog)
+		echo && read -p "Press [ENTER] to get the menu back." NOP
+	;;
+'ext')
 		exitFn
 	;;
 esac
