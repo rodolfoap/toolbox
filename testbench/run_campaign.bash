@@ -1,4 +1,5 @@
-for a in test_cases/*; do
-	TEST=$(yq r $a TestLauncherFilename)
-	$TEST
+#!/bin/bash
+rm -rf results; mkdir results
+for CASE in cases/*; do
+	./run_test.bash $CASE
 done
