@@ -7,12 +7,9 @@ import time
 
 test_data=lorem.paragraph()
 
-print()
 for n in range(3):
 	print(n, test_data)
 	time.sleep(0.5)
-print()
-
 print('DATA=', test_data, sep='')
 print('FRE=', textstat.flesch_reading_ease(test_data), sep='')
 print('SMOG_INDEX=', textstat.smog_index(test_data), sep='')

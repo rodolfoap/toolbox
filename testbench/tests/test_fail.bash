@@ -1,11 +1,10 @@
 #!/bin/bash
-set -x
 
 # MANDATORY: TESTS SHOULD RUN IN ITS DIRECTORY
 cd $(cd $(dirname ${BASH_SOURCE[0]}) >/dev/null 2>&1 && pwd)
 
 # All test STDOUT/STDERR output will be saved on a single file
-echo; for x in {1..5}; do python3 -c 'import lorem; print(lorem.paragraph())'; sleep 0.5; done; echo
+for x in {1..5}; do python3 -c 'import lorem; print(lorem.paragraph())'; sleep 0.5; done
 
 # Rule: Tests should print VAR=VALUE pairs to stdout
 echo VARIABLE1=0

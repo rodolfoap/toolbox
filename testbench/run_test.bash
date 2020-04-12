@@ -8,12 +8,18 @@ RESULT=results/$TESTNAME.status
 
 echo [RUNTEST] $TEST started.
 LAUNCHER=$(yq r $TEST TestLauncherFilename)
+BASEDIR=$(dirname $LAUNCHER)
+echo [RUNTEST] Launcher: $LAUNCHER
+echo [RUNTEST] STARTED: $TEST
 {
-	echo [RUNTEST] $TEST: $LAUNCHER
-	$LAUNCHER
-	[ $? == 0 ] && TEST_STATUS=PASS || TEST_STATUS=FAIL;
+	pushd $BASEDIR &>/dev/null
+	echo
+	$LAUNCHER; [ $? == 0 ] && TEST_STATUS=PASS || TEST_STATUS=FAIL;
+	echo
+	popd &>/dev/null
 	echo TEST_STATUS=$TEST_STATUS > $RESULT
 } |& tee $LOGFILE
+echo [RUNTEST] FINISHED: $TEST
 grep "^[^ ]*=[^ ]*$" $LOGFILE >> $RESULT
-echo; echo $RESULT:; echo
+echo $RESULT:
 sed 's/^/\t/' $RESULT

@@ -1,6 +1,6 @@
 TestDate: 2020-04-10
 TestDescription: FIELD1
-TestId: T001
+TestId: Packaging002
 TestLauncherFilename: /home/rodolfoap/git/toolbox/testbench/tests/test_fail.bash
 TestReqList:
 - 0

@@ -15,7 +15,7 @@ TestDescription: 'This testset assesses the performance of the KafkaPB component
   in order, just the UUID of the first
 
   package is verified, and the full count.'
-TestId: Messaging001
+TestId: Messaging003
 TestLauncherFilename: /home/rodolfoap/git/toolbox/testbench/tests/test_fail.bash
 TestReqList:
 - 1
