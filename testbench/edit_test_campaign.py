@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-import npyscreen as nps
-import sys
-sys.path.append('lib/')
+import sys, config
+sys.path.append(config.apppath+'/lib/')
 import yaml
+import npyscreen as nps
 from entry_form import Entry_Form
 from os import listdir
 

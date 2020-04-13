@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import sys
-sys.path.append('/home/rodolfoap/git/toolbox/testbench/lib/')
+import sys, os
+sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../lib')
 import npyscreen as nps
 from entry_form import Entry_Form
 

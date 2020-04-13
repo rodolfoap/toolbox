@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-import sys
-sys.path.append('lib/')
+import sys, os
+sys.path.append(os.path.dirname(os.path.realpath(__file__))+'/../lib')
 import configparser
 from status import Status
 

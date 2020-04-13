@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
+import sys, config
+sys.path.append(config.apppath+'/lib/')
 import npyscreen as nps
-import sys
-sys.path.append('lib/')
 from entry_form import Entry_Form
 from os import listdir
 
