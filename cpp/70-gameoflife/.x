@@ -1,5 +1,5 @@
 execute(){
-	./app
+	./app in.matrix
 }
 debug(){
 	nemiver app
