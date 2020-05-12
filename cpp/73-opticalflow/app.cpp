@@ -1,11 +1,13 @@
 #include <iostream>
-#include <opencv2/opencv.hpp> // Requires: apt install libopencv-dev python3-openc////v
+#include <opencv2/opencv.hpp> // Requires: apt install libopencv-dev python3-opencv
 #include <opencv2/highgui.hpp>
 #include <opencv2/imgproc.hpp>
 #include <opencv2/objdetect/objdetect.hpp>
 #include <opencv2/video/tracking.hpp>
 #include <vector>
 #include <stdio.h>
+#define GRID_SIZE 20
+#define GENERATE_OUTPUT false
 using namespace std;
 using namespace cv;
 
@@ -13,23 +15,21 @@ int main(int argc, char* argv[]) {
 	cv::Mat res, img1, img2, img2Original, img2OriginalC;
 	cv::VideoWriter writer;
 	cv::VideoCapture cap;
-	cap.open(std::string(argv[1]));
-	//cap.open(0);
-	cv::namedWindow("cat", cv::WINDOW_AUTOSIZE);
+	cap.open(std::string(argv[1])); // or cap.open(0);
+	cv::namedWindow("OpticalFlow", cv::WINDOW_AUTOSIZE);
 	cap >> img1;
 	cvtColor(img1, img1, COLOR_BGR2GRAY);
-	//double fps = cap.get(cv::CAP_PROP_FPS);
-	//cv::Size tamano((int)cap.get(cv::CAP_PROP_FRAME_WIDTH), (int)cap.get(cv::CAP_PROP_FRAME_HEIGHT));
-	//writer.open("mouse.avi", CV_FOURCC('M', 'J', 'P', 'G'), fps, tamano);
-	for (;;) {
+	if(GENERATE_OUTPUT) writer.open("output.avi", CV_FOURCC('M', 'J', 'P', 'G'), cap.get(cv::CAP_PROP_FPS), cv::Size((int)cap.get(cv::CAP_PROP_FRAME_WIDTH), (int)cap.get(cv::CAP_PROP_FRAME_HEIGHT)));
+	while(cv::waitKey(1)!=113) {
 		cap >> img2;
 		if (img2.empty()) break;
 		img2.copyTo(img2OriginalC);
 		cvtColor(img2, img2, COLOR_BGR2GRAY);
 		img2.copyTo(img2Original);
-		cv::calcOpticalFlowFarneback(img1, img2, res, .4, 1, 12, 2, 8, 1.2, 0);
-		for (int y = 0; y < img2.rows; y += 5) {
-			for (int x = 0; x < img2.cols; x += 5) {
+		//::calcOpticalFlowFarneback(img1, img2, res, 0.4, 1, 12, 2, 8, 1.2, 0);
+		cv::calcOpticalFlowFarneback(img1, img2, res, 0.5, 3, 15, 3, 5, 1.2, 0);
+		for (int y = 0; y < img2.rows; y +=GRID_SIZE) {
+			for (int x = 0; x < img2.cols; x +=GRID_SIZE) {
 				// get the flow from y, x position * 3 for better visibility
 				const Point2f flowatxy = res.at<Point2f>(y, x) * 1;
 				// draw line at flow direction
@@ -39,9 +39,8 @@ int main(int argc, char* argv[]) {
 			}
 		}
 		img2Original.copyTo(img1);
-		imshow("cat", img2OriginalC);
-		//writer << img2OriginalC;
-		if (cv::waitKey(1) == 27) break;
+		imshow("OpticalFlow", img2OriginalC);
+		if(GENERATE_OUTPUT) writer << img2OriginalC;
 	}
 	cap.release();
 	return 0;
