@@ -14,10 +14,10 @@ int main() {
 	std::cout << "distCoeffs:\n" << distCoeffs << std::endl;
 
 	cv::Mat cameraMatrix = cv::Mat::eye(3, 3, CV_64F);
-	cameraMatrix.at<double>(0, 0) = 2.3396381685789738e+03;	// fx
-	cameraMatrix.at<double>(0, 2) = 960.;			// cx
-	cameraMatrix.at<double>(1, 1) = 2.3396381685789738e+03;	// fy
-	cameraMatrix.at<double>(1, 2) = 540.;			// cy
+	cameraMatrix.at<double>(0, 0) =   1.;	// fx
+	cameraMatrix.at<double>(1, 1) =   1.;	// fy
+	cameraMatrix.at<double>(0, 2) = 400.;	// cx
+	cameraMatrix.at<double>(1, 2) = 300.;	// cy
 	// | fx  0  cx |
 	// | 0  fy  cy |
 	// | 0   0   1 |
