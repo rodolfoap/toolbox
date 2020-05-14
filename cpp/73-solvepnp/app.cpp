@@ -52,5 +52,10 @@ int main() {
 	//285 represents the height Zconst
 
 	std::cout << "P = " << rotationMatrix.inv() * (s * cameraMatrix.inv() * uvPoint - tvec) << std::endl;
+
+	cv::FileStorage fs("output.yaml", cv::FileStorage::WRITE);
+     	fs << "rmatrix" << rotationMatrix;
+     	fs << "cmatrix" << cameraMatrix;
+	fs.release();
 	return 0;
 }
