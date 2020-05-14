@@ -7,14 +7,22 @@
 #include <opencv2/highgui/highgui.hpp>
 
 int main() {
-	// Intrinsic camera parameters.
-	cv::Mat cameraMatrix = cv::Mat::eye(3, 3, CV_64F);
+	// Intrinsics
+
 	cv::Mat distCoeffs = cv::Mat::zeros(8, 1, CV_64F);
-	cameraMatrix.at<double>(0, 0) = 2.3396381685789738e+03;
-	cameraMatrix.at<double>(0, 2) = 960.;
-	cameraMatrix.at<double>(1, 1) = 2.3396381685789738e+03;
-	cameraMatrix.at<double>(1, 2) = 540.;
+	// | k1  k2  p1  p2  k3  k4  k5  k6 |
+	std::cout << "distCoeffs:\n" << distCoeffs << std::endl;
+
+	cv::Mat cameraMatrix = cv::Mat::eye(3, 3, CV_64F);
+	cameraMatrix.at<double>(0, 0) = 2.3396381685789738e+03;	// fx
+	cameraMatrix.at<double>(0, 2) = 960.;			// cx
+	cameraMatrix.at<double>(1, 1) = 2.3396381685789738e+03;	// fy
+	cameraMatrix.at<double>(1, 2) = 540.;			// cy
+	// | fx  0  cx |
+	// | 0  fy  cy |
+	// | 0   0   1 |
 	std::cout << "cameraMatrix:\n" << cameraMatrix << std::endl;
+
 	std::vector<cv::Point2f> imagePoints;
 	std::vector<cv::Point3f> objectPoints;
 
