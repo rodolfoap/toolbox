@@ -14,8 +14,8 @@ int main() {
 	std::cout << "distCoeffs:\n" << distCoeffs << std::endl;
 
 	cv::Mat cameraMatrix = cv::Mat::eye(3, 3, CV_64F);
-	cameraMatrix.at<double>(0, 0) = 100.;	// fx, in pixels
-	cameraMatrix.at<double>(1, 1) = 100.;	// fy, in pixels
+	cameraMatrix.at<double>(0, 0) = 400.;	// fx, in pixels
+	cameraMatrix.at<double>(1, 1) = 400.;	// fy, in pixels
 	cameraMatrix.at<double>(0, 2) = 400.;	// cx, in pixels
 	cameraMatrix.at<double>(1, 2) = 300.;	// cy, in pixels
 	// | fx  0  cx |
@@ -49,7 +49,7 @@ int main() {
 	cv::Mat leftSideMat  = rotationMatrix.inv() * cameraMatrix.inv() * uvPoint;
 	cv::Mat rightSideMat = rotationMatrix.inv() * tvec;
 
-	double s = (200 + rightSideMat.at<double>(2,0))/leftSideMat.at<double>(2,0);
+	double s = (2 + rightSideMat.at<double>(2,0))/leftSideMat.at<double>(2,0);
 	//285 represents the height Zconst
 
 	std::cout << "P = " << rotationMatrix.inv() * (s * cameraMatrix.inv() * uvPoint - tvec) << std::endl;
