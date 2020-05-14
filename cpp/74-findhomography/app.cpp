@@ -88,5 +88,10 @@ int main(int argc, char** argv) {
 	imshow("Input", Img);
 	imshow("Output", Out_Img);
 	imwrite("output.png", Out_Img);
+
+	cv::FileStorage fs("output.yaml", cv::FileStorage::WRITE);
+     	fs << "homography_matrix" << H;
+	fs.release();
+
 	waitKey(0);
 }
