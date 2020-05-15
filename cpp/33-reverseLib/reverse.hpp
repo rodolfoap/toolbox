@@ -1,1 +1,0 @@
-void reverse(char*, char*);
