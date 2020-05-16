@@ -123,7 +123,7 @@ void CameraCalibrator::setCalibrationFlag(bool radial8CoeffEnabled, bool tangent
 }
 
 int main() {
-	Mat camera_m=imread("cam_mat.yaml");
+	Mat camera_m=imread("cam_mat.jpg");
 	if (!camera_m.empty()) {
 		Mat undistorted,m1, m2,image;
 		m1 = imread("map1.jpg");
@@ -155,7 +155,7 @@ int main() {
 		image = cv::imread(filelist[9]);
 		cv::Mat uImage = cameraCalibrator.remap(image);
 		cv::Mat cameraMatrix = cameraCalibrator.getCameraMatrix();
-		imwrite("cam_mat.yaml",cameraMatrix);
+		imwrite("cam_mat.jpg",cameraMatrix);
 		cout << " Camera intrinsic: " << cameraMatrix.rows << "x" << cameraMatrix.cols << std::endl;
 		cout << cameraMatrix.at<double>(0, 0) << " " << cameraMatrix.at<double>(0, 1) << " " << cameraMatrix.at<double>(0, 2) << std::endl;
 		cout << cameraMatrix.at<double>(1, 0) << " " << cameraMatrix.at<double>(1, 1) << " " << cameraMatrix.at<double>(1, 2) << std::endl;
