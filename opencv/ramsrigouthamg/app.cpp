@@ -18,7 +18,7 @@ Mat imageLogo;
 
 // Function to add main image and transformed logo image and show final output.
 // Icon image replaces the pixels of main image in this implementation.
-void showFinal(Mat src1, Mat src2){
+void showFinal(Mat src1, Mat src2) {
 	Mat gray, gray_inv, src1final, src2final;
 	cvtColor(src2, gray, CV_BGR2GRAY);
 	threshold(gray, gray, 0, 255, CV_THRESH_BINARY);
@@ -34,12 +34,11 @@ void showFinal(Mat src1, Mat src2){
 
 // Here we get four points from the user with left mouse clicks.
 // On 5th click we output the overlayed image.
-void on_mouse(int e, int x, int y, int d, void *ptr){
-	if(e==EVENT_LBUTTONDOWN){
-		if(right_image.size()<4){
-			right_image.push_back(Point2f(float(x), float(y)));
-			cout << x << " "<< y <<endl;
-		} else {
+void on_mouse(int e, int x, int y, int d, void *ptr) {
+	if(e==EVENT_LBUTTONDOWN) {
+		right_image.push_back(Point2f(float(x), float(y)));
+		cout << x << " "<< y <<endl;
+		if(right_image.size()==4) {
 			cout << "Calculating homography... " <<endl;
 			// Deactivate callback
 			cv::setMouseCallback("Display window", NULL, NULL);
@@ -54,11 +53,10 @@ void on_mouse(int e, int x, int y, int d, void *ptr){
 }
 
 
-int main(int argc, char** argv){
-	if(argc !=3){ cerr<<" Usage: "<<argv[0]<<"[background.jpg logo.jpg]"<<endl; return -1; }
+int main(int argc, char** argv) {
+	if(argc !=3) { cerr<<" Usage: "<<argv[0]<<"[background.jpg logo.jpg]"<<endl; return -1; }
 	imageMain=imread(argv[1], CV_LOAD_IMAGE_COLOR);
 	imageLogo=imread(argv[2], CV_LOAD_IMAGE_COLOR);
-
 	// Push the 4 corners of the logo image as the 4 points for correspondence to calculate homography.
 	left_image.push_back(Point2f(float(0), float(0)));
 	left_image.push_back(Point2f(float(0), float(imageLogo.rows)));
@@ -67,9 +65,9 @@ int main(int argc, char** argv){
 	namedWindow("Display window", WINDOW_AUTOSIZE);// Create a window for display.
 	imshow("Display window", imageMain);
 	setMouseCallback("Display window", on_mouse, NULL);
-
+	cout << "Please select 4 points..." <<endl;
 	// ESC to exit
-	while(1){
+	while(1) {
 		int key=cvWaitKey(10);
 		if(key==27)break;
 	}
