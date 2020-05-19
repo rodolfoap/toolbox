@@ -83,7 +83,10 @@ int main() {
 	cout<<"distortion_coeffs: "<<endl<<distortion_coeffs<<endl;
 	// Matrix storage
 	FileStorage file("camera_matrix.yaml",cv::FileStorage::WRITE);
-	file<<"intrinsic_matrix"<<intrinsic_matrix<<"distortion_coeffs"<<distortion_coeffs;
+	file<<"intrinsic_matrix"<<intrinsic_matrix;
+	file<<"distortion_coeffs"<<distortion_coeffs;
+	file<<"tvecs"<<tvecs;
+	file<<"rvecs"<<rvecs;
 	file.release();
 	cvDestroyAllWindows();
 	return 0;

@@ -1,9 +1,9 @@
 execute(){
 	# ./calib annotated_points.jpg
-	./test_dist pic/1.jpg
+	./test_calib pic/1.jpg
 }
 build(){
-	mkdir build;
+	mkdir -p build;
 	pushd build &> /dev/null;
 	[ -f Makefile ] || cmake .. -Wdev;
 	make -j8; STATUS=$?
