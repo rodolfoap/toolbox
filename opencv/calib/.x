@@ -25,7 +25,7 @@ case "$1" in
 		debug
 	;;
 	e)
-		vi -p app.cpp test_dist.cpp test_calib.cpp CMakeLists.txt
+		vi -p calib.cpp test_dist.cpp test_calib.cpp CMakeLists.txt
 		build;
 		execute;
 	;;
