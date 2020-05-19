@@ -1,5 +1,6 @@
 execute(){
-	./calib annotated_points.jpg
+	# ./calib annotated_points.jpg
+	./test_dist pic/1.jpg
 }
 build(){
 	mkdir build;
