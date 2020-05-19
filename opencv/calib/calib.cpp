@@ -9,29 +9,33 @@ using namespace std;
 using namespace cv;
 
 string images_path="pic/";
-string storage_path="mtx/";
 
+cv::Mat takePicture() {
+	VideoCapture cam(0);
+	cv::Mat pic, gray;
+	while (!cam.isOpened()) {
+		std::cout << "Failed to make connection to cam" << std::endl;
+		cam.open(0);
+	}
+	cam>>pic;
+        cvtColor(pic, gray, CV_RGB2GRAY);
+	return gray;
+	//cv::waitKey(1000);
+}
 int main() {
-//-----------------------------------------------------------------------------------------
-//----------------------------------- images loading --------------------------------------
-//-----------------------------------------------------------------------------------------
+	// Load images
 	vector<cv::Mat> input;
 	int iter=1;
-	while(1) {
-		std::ostringstream buff;
-		buff<<iter;
-		string string_iter=buff.str();
-		cerr<<"Loading: "<<images_path+string_iter+".jpg\n";
-		Mat image = imread(images_path+string_iter+".jpg",CV_LOAD_IMAGE_GRAYSCALE);
-		if(image.empty()) break;
+	Mat image=imread(images_path+std::to_string(iter)+".jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	while(iter<10) {
 		input.push_back(image);
-		iter=iter+1;
+		cerr<<"Loaded: "<<images_path+std::to_string(iter)+".jpg\n";
+		iter++;
+		image=imread(images_path+std::to_string(iter)+".jpg", CV_LOAD_IMAGE_GRAYSCALE);
 	}
 	int N=input.size();
 	cerr<<"Size: "<<N<<"\n";
-//-----------------------------------------------------------------------------------------
-//-------------------------- cheesboard corners detection ---------------------------------
-//-----------------------------------------------------------------------------------------
+	// Chessboard Corners Detection
 	Mat out;
 	vector<Point2f> corners;
 	vector<vector<Point2f> > image_points;
@@ -53,9 +57,7 @@ int main() {
 		if(key==27)break;
 	}
 	N=image_points.size();
-//-----------------------------------------------------------------------------------------
-//------------------------------- camera calibration --------------------------------------
-//-----------------------------------------------------------------------------------------
+	// Camera Calibration
 	Mat intrinsic_matrix;
 	Mat distortion_coeffs;
 	vector<vector<Point3f> > object_points;
@@ -72,14 +74,15 @@ int main() {
 			}
 	vector<cv::Mat> rvecs;
 	vector<cv::Mat> tvecs;
-	double calibration_error = calibrateCamera(object_points,image_points,input[0].size(),intrinsic_matrix,distortion_coeffs,rvecs,tvecs);
+	double calibration_error=calibrateCamera(
+			object_points, image_points,
+			input[0].size(),intrinsic_matrix,
+			distortion_coeffs, rvecs, tvecs);
 	cout<<"calibration_error: "<<calibration_error<<endl;
-	cout<<"intrinsic_matrix: "<<endl<<intrinsic_matrix<<endl;
-	cout<<"distortion_coeffs:"<<endl<< distortion_coeffs<<endl;
-//-----------------------------------------------------------------------------------------
-//----------------------------------- martices storage ------------------------------------
-//-----------------------------------------------------------------------------------------
-	FileStorage file(storage_path+"cam_calib.yaml",cv::FileStorage::WRITE);
+	cout<<" intrinsic_matrix: "<<endl<<intrinsic_matrix<<endl;
+	cout<<"distortion_coeffs: "<<endl<<distortion_coeffs<<endl;
+	// Matrix storage
+	FileStorage file("camera_matrix.yaml",cv::FileStorage::WRITE);
 	file<<"intrinsic_matrix"<<intrinsic_matrix<<"distortion_coeffs"<<distortion_coeffs;
 	file.release();
 	cvDestroyAllWindows();
