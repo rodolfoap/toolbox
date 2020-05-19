@@ -25,9 +25,9 @@ cv::Mat takePicture() {
 int main() {
 	// Load images
 	vector<cv::Mat> input;
-	int iter=1;
+	int iter=0;
 	Mat image=imread(images_path+std::to_string(iter)+".jpg", CV_LOAD_IMAGE_GRAYSCALE);
-	while(iter<10) {
+	while(iter<9) {
 		input.push_back(image);
 		cerr<<"Loaded: "<<images_path+std::to_string(iter)+".jpg\n";
 		iter++;
@@ -85,8 +85,6 @@ int main() {
 	FileStorage file("camera_matrix.yaml",cv::FileStorage::WRITE);
 	file<<"intrinsic_matrix"<<intrinsic_matrix;
 	file<<"distortion_coeffs"<<distortion_coeffs;
-	file<<"tvecs"<<tvecs;
-	file<<"rvecs"<<rvecs;
 	file.release();
 	cvDestroyAllWindows();
 	return 0;

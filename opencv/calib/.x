@@ -1,5 +1,5 @@
 execute(){
-	# ./calib annotated_points.jpg
+	#./calib
 	./test_calib pic/1.jpg
 }
 build(){
