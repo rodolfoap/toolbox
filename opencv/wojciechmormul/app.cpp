@@ -24,7 +24,7 @@ int main() {
 		buff<<iter;
 		string string_iter=buff.str();
 		cerr<<"Loading: "<<images_path+string_iter+".jpg\n";
-		Mat image = imread(images_path+string_iter+".jpg",CV_LOAD_IMAGE_GRAYSCALE);
+		Mat image=imread(images_path+string_iter+".jpg", IMREAD_GRAYSCALE);
 		if(image.empty()) break;
 		input.push_back(image);
 		iter=iter+1;
@@ -41,7 +41,7 @@ int main() {
 	for(int i=0; i<N; i++) {
 		bool pattern_found=findChessboardCorners(input[i],Size(8,5),corners,CALIB_CB_ADAPTIVE_THRESH|CALIB_CB_NORMALIZE_IMAGE);
 		if(pattern_found) {
-			cvtColor(input[i],out,CV_GRAY2RGB);
+			cvtColor(input[i],out, COLOR_GRAY2RGB);
 			for(int j=0; j<5; j++)
 				for(int i=0; i<8; i++) {
 					circle(out,Point(corners[i+j*8].x,corners[i+j*8].y),6,color[j],3);
@@ -101,7 +101,7 @@ int main() {
 		Mat test;
 		int image_number=7;
 		input[image_number].copyTo(test);
-		cvtColor(test,test,CV_GRAY2BGR);
+		cvtColor(test,test, COLOR_GRAY2RGB);
 		vector<Point3f> cube_points;
 		cube_points.resize(4);
 		cube_points[0]=Point3f(0,0,0);
@@ -117,6 +117,6 @@ int main() {
 		moveWindow("calibration_test",1,1);
 		waitKey();
 	}
-	cvDestroyAllWindows();
+	destroyAllWindows();
 	return 0;
 }
