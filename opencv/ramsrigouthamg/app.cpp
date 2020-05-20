@@ -20,8 +20,8 @@ Mat imageLogo;
 // Icon image replaces the pixels of main image in this implementation.
 void showFinal(Mat src1, Mat src2) {
 	Mat gray, gray_inv, src1final, src2final;
-	cvtColor(src2, gray, CV_BGR2GRAY);
-	threshold(gray, gray, 0, 255, CV_THRESH_BINARY);
+	cvtColor(src2, gray, COLOR_BGR2GRAY);
+	threshold(gray, gray, 0, 255, THRESH_BINARY);
 	//adaptiveThreshold(gray, gray, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 5, 4);
 	bitwise_not(gray, gray_inv);
 	src1.copyTo(src1final, gray_inv);
@@ -29,7 +29,7 @@ void showFinal(Mat src1, Mat src2) {
 	Mat finalImage=src1final+src2final;
 	namedWindow("output", WINDOW_AUTOSIZE);
 	imshow("output", finalImage);
-	cvWaitKey(0);
+	waitKey(0);
 }
 
 // Here we get four points from the user with left mouse clicks.
@@ -55,8 +55,8 @@ void on_mouse(int e, int x, int y, int d, void *ptr) {
 
 int main(int argc, char** argv) {
 	if(argc !=3) { cerr<<" Usage: "<<argv[0]<<"[background.jpg logo.jpg]"<<endl; return -1; }
-	imageMain=imread(argv[1], CV_LOAD_IMAGE_COLOR);
-	imageLogo=imread(argv[2], CV_LOAD_IMAGE_COLOR);
+	imageMain=imread(argv[1], IMREAD_COLOR);
+	imageLogo=imread(argv[2], IMREAD_COLOR);
 	// Push the 4 corners of the logo image as the 4 points for correspondence to calculate homography.
 	left_image.push_back(Point2f(float(0), float(0)));
 	left_image.push_back(Point2f(float(0), float(imageLogo.rows)));
@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
 	cout << "Please select 4 points..." <<endl;
 	// ESC to exit
 	while(1) {
-		int key=cvWaitKey(10);
+		int key=waitKey(10);
 		if(key==27)break;
 	}
 	return 0;
