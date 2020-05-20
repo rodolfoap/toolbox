@@ -2,6 +2,23 @@
 #include <iostream>
 #include <vector>
 
+/*
+std::vector<Point2f> worldPoints;
+std::vector<Point2f> cameraPoints;
+
+//insert somepoints in both vectors
+
+Mat perspectiveMat_= findHomography(cameraPoints, worldPoints, CV_RANSAC);
+
+//use perspective transform to translate other points to real word coordinates
+
+std::vector<Point2f> camera_corners;
+//insert points from your camera image here
+
+std::vector<Point2f> world_corners;
+perspectiveTransform(camera_corners, world_corners, perspectiveMat_);
+*/
+
 // See https://stackoverflow.com/questions/35942095/opencv-strange-rotation-and-translation-matrices-from-decomposehomographymat
 int main() {
 	// set up a virtual camera
