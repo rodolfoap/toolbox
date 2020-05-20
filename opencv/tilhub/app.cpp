@@ -118,8 +118,8 @@ cv::Mat CameraCalibrator::remap(const cv::Mat &image) {
 void CameraCalibrator::setCalibrationFlag(bool radial8CoeffEnabled, bool tangentialParamEnabled) {
 	// Set the flag used in cv::calibrateCamera()
 	flag = 0;
-	if (!tangentialParamEnabled) flag += CV_CALIB_ZERO_TANGENT_DIST;
-	if (radial8CoeffEnabled) flag += CV_CALIB_RATIONAL_MODEL;
+	if (!tangentialParamEnabled) flag += CALIB_ZERO_TANGENT_DIST;
+	if (radial8CoeffEnabled) flag += CALIB_RATIONAL_MODEL;
 }
 
 int main() {
