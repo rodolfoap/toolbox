@@ -13,7 +13,7 @@ string images_path="pic/";
 int main(int argc, char *argv[]) {
 	Mat intrinsic_matrix, distortion_coeffs;
 	vector<cv::Mat> tvecs, rvecs;
-	Mat input=imread(argv[1], CV_LOAD_IMAGE_GRAYSCALE);
+	Mat input=imread(argv[1], IMREAD_GRAYSCALE);
 	FileStorage file("camera_matrix.yaml", cv::FileStorage::READ);
 	file["intrinsic_matrix" ]>>intrinsic_matrix;
 	file["distortion_coeffs"]>>distortion_coeffs;
@@ -21,7 +21,7 @@ int main(int argc, char *argv[]) {
 
 	Mat test;
 	input.copyTo(test);
-	cvtColor(test,test,CV_GRAY2BGR);
+	cvtColor(test,test, COLOR_GRAY2BGR);
 	vector<Point3f> cube_points;
 	cube_points.resize(4);
 	cube_points[0]=Point3f(    0,   0,    0);
@@ -39,6 +39,6 @@ int main(int argc, char *argv[]) {
 	imshow("calibration_test",test);
 	moveWindow("calibration_test",1,1);
 	waitKey();
-	cvDestroyAllWindows();
+	destroyAllWindows();
 	return 0;
 }

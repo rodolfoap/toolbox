@@ -18,7 +18,7 @@ cv::Mat takePicture() {
 		cam.open(0);
 	}
 	cam>>pic;
-        cvtColor(pic, gray, CV_RGB2GRAY);
+        cvtColor(pic, gray, COLOR_RGB2GRAY);
 	return gray;
 	//cv::waitKey(1000);
 }
@@ -26,12 +26,12 @@ int main() {
 	// Load images
 	vector<cv::Mat> input;
 	int iter=0;
-	Mat image=imread(images_path+std::to_string(iter)+".jpg", CV_LOAD_IMAGE_GRAYSCALE);
+	Mat image=imread(images_path+std::to_string(iter)+".jpg", IMREAD_GRAYSCALE);
 	while(iter<9) {
 		input.push_back(image);
 		cerr<<"Loaded: "<<images_path+std::to_string(iter)+".jpg\n";
 		iter++;
-		image=imread(images_path+std::to_string(iter)+".jpg", CV_LOAD_IMAGE_GRAYSCALE);
+		image=imread(images_path+std::to_string(iter)+".jpg", IMREAD_GRAYSCALE);
 	}
 	int N=input.size();
 	cerr<<"Size: "<<N<<"\n";
@@ -41,9 +41,9 @@ int main() {
 	vector<vector<Point2f> > image_points;
 	Scalar color[5]= {Scalar(255,0,255),Scalar(255,180,0),Scalar(0,255,0),Scalar(0,255,255),Scalar(0,0,255)};
 	for(int i=0; i<N; i++) {
-		bool pattern_found=findChessboardCorners(input[i],Size(8,5),corners,CALIB_CB_ADAPTIVE_THRESH|CALIB_CB_NORMALIZE_IMAGE);
+		bool pattern_found=findChessboardCorners(input[i],Size(8,5),corners, CALIB_CB_ADAPTIVE_THRESH|CALIB_CB_NORMALIZE_IMAGE);
 		if(pattern_found) {
-			cvtColor(input[i],out,CV_GRAY2RGB);
+			cvtColor(input[i],out, COLOR_GRAY2RGB);
 			for(int j=0; j<5; j++)
 				for(int i=0; i<8; i++) {
 					circle(out,Point(corners[i+j*8].x,corners[i+j*8].y),6,color[j],3);
@@ -86,6 +86,6 @@ int main() {
 	file<<"intrinsic_matrix"<<intrinsic_matrix;
 	file<<"distortion_coeffs"<<distortion_coeffs;
 	file.release();
-	cvDestroyAllWindows();
+	destroyAllWindows();
 	return 0;
 }

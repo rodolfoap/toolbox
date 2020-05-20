@@ -13,7 +13,7 @@ string images_path="pic/";
 int main(int argc, char* argv[]) {
 	Mat intrinsic_matrix;
 	Mat distortion_coeffs;
-	Mat input=imread(argv[1], CV_LOAD_IMAGE_GRAYSCALE);
+	Mat input=imread(argv[1], IMREAD_GRAYSCALE);
 	FileStorage file("camera_matrix.yaml", cv::FileStorage::READ);
 	file["intrinsic_matrix" ]>>intrinsic_matrix;
 	file["distortion_coeffs"]>>distortion_coeffs;
@@ -23,6 +23,6 @@ int main(int argc, char* argv[]) {
 	imshow("distortion_test",image_undistorted);
 	moveWindow("distortion_test",1,1);
 	waitKey();
-	cvDestroyAllWindows();
+	destroyAllWindows();
 	return 0;
 }
