@@ -1,38 +1,32 @@
 #include <opencv2/opencv.hpp>
 #include <iostream>
 #include <vector>
-#include <opencv2/calib3d.hpp>
-#include <opencv2/core.hpp>
+//#include <opencv2/calib3d.hpp>
+//#include <opencv2/core.hpp>
 #define LOG std::cerr<<">>> "<<__FILE__<<"["<<__LINE__<<"]:"<<__func__<<"();"<<std::endl;
 
-using namespace std;
-using namespace cv;
-
 int main() {
-	vector<Point2f> points2D;
-	vector<Point3f> points3D;
-	points2D.push_back(Point2f(250.f, 300.f));
-	points2D.push_back(Point2f(600.f, 250.f));
-	points2D.push_back(Point2f(200.f, 500.f));
-	points2D.push_back(Point2f(750.f, 550.f));
+	std::vector<cv::Point2f> points2D;
+	std::vector<cv::Point3f> points3D;
+	points2D.push_back(cv::Point2f(250.f, 300.f));
+	points2D.push_back(cv::Point2f(600.f, 250.f));
+	points2D.push_back(cv::Point2f(200.f, 500.f));
+	points2D.push_back(cv::Point2f(750.f, 550.f));
 
-	points3D.push_back(Point3f(  0.f,   0.f,   0.f));
-	points3D.push_back(Point3f(100.f,   0.f,   0.f));
-	points3D.push_back(Point3f(  0.f, 100.f,   0.f));
-	points3D.push_back(Point3f(100.f, 100.f,   0.f));
+	points3D.push_back(cv::Point3f(  0.f,   0.f,   0.f));
+	points3D.push_back(cv::Point3f(100.f,   0.f,   0.f));
+	points3D.push_back(cv::Point3f(  0.f, 100.f,   0.f));
+	points3D.push_back(cv::Point3f(100.f, 100.f,   0.f));
 
-	Mat H=findHomography(points2D, points3D, RANSAC);
+	cv::Mat H=findHomography(points2D, points3D, cv::RANSAC);
 	std::cerr<<H<<std::endl;
 
-	vector<Point2f> cameraPoints;
-	vector<Point3f> worldPoints(1);
-	cameraPoints.push_back(Point2f(420.f, 350.f));
-	cameraPoints.push_back(Point2f(650.f, 650.f));
-LOG
+	std::vector<cv::Point2f> cameraPoints;
+	std::vector<cv::Point2f> worldPoints;
+	cameraPoints.push_back(cv::Point2f(400.f, 375.f));
+	cameraPoints.push_back(cv::Point2f(675.f, 400.f));
 	perspectiveTransform(cameraPoints, worldPoints, H);
-LOG
 	std::cerr<<worldPoints<<std::endl;
-LOG
 }
 
 
