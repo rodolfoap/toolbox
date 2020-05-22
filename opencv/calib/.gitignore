@@ -1,7 +1,0 @@
-*.yaml
-app
-calib
-test_calib
-test_dist
-build/
-*.cpp.tu*
