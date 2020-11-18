@@ -1,0 +1,36 @@
+#/bin/bash
+set -x
+
+:
+: Generate private and public RSA PEM keys
+:
+openssl genpkey -aes-256-cbc -algorithm RSA -out key.pem -pkeyopt rsa_keygen_bits:4096
+openssl rsa -in key.pem -pubout -out pub.pem
+
+:
+: View contents
+:
+openssl rsa -in key.pem -text -noout
+openssl rsa -in pub.pem -pubin -text -noout
+
+:
+: Generate symmetric key for encryption:
+:
+openssl rand -base64 365 > random.bin
+
+:
+: Encrypt the symmetric key:
+:
+openssl rsautl -encrypt -inkey pub.pem -pubin -in random.bin -out random.bin.enc
+
+:
+: Encrypt the file using the symmetric key:
+:
+openssl enc -aes-256-cbc -salt -in file.txt -out file.enc -md sha512 -pbkdf2 -iter 1000000 -pass file:random.bin
+
+: Decrypt encrypted data:
+:
+openssl rsautl -decrypt -inkey key.pem -in random.bin.enc -out random2.bin
+openssl enc -d -aes-256-cbc -salt -in file.enc -out file.tmp -md sha512 -pbkdf2 -iter 1000000 -pass file:random2.bin
+
+diff -s file.txt file.tmp

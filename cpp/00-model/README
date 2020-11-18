@@ -1,9 +1,0 @@
-The exercise is to:
-* Implement the class "Thing", having the protected member "name";
-* Implement the class "Solid", implementing a public getter and setter;
-* Implement getName() and setName();
-* Main should:
-	* create a "solid0" object;
-	* "cerr <<" the name obtained by the getter.
-
-See the model.cpp file.

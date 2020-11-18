@@ -1,0 +1,5 @@
+#/bin/bash
+[ -z "$2" ] && { echo "Usage: $0 FILE PASSFILE" && exit; }
+
+# Apparently, the max size of the PASSFILE is 365 bytes.
+openssl enc -aes-256-cbc -salt -in $1 -out $1.enc -md sha512 -pbkdf2 -iter 1000000 -pass file:$2
