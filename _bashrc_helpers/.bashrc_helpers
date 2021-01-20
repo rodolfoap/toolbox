@@ -75,9 +75,9 @@ dx(){	# This is the last d.ssh version, autoselects image/container
 }
 dl(){
 	echo d images '(images)'
-	docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedSince}}\t{{.Size}}"|grep -f ~/.docker/ifilter|sed "s/^/\t/";
+	docker images --format "table {{.ID}}\t{{.Repository}}\t{{.Tag}}\t{{.CreatedSince}}\t{{.Size}}"|grep -v -f ~/.docker/ifilter|sed "s/^/\t/";
 	echo d ps -a '(containers)'
-	docker ps -a --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Image}}\t{{.Networks}}\t{{.Ports}}"|grep -f ~/.docker/cfilter|sed "s/^/\t/"
+	docker ps -a --format "table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Image}}\t{{.Networks}}\t{{.Ports}}"|grep -v -f ~/.docker/cfilter|sed "s/^/\t/"
 }
 dla(){
 	echo d network ls '(volumes)'
@@ -143,6 +143,7 @@ d.rmi.list(){ docker images --format "table d.rmi {{.Repository}}:{{.Tag}}"; }
 ####################################################################
 # Functions
 
+CURRENTWD=~/k8s-ckad/ex
 calc()	{ echo "scale=${2:-2}; $1" | bc -l; }
 vix()	{ [ -f .x ] || cp ~/bin/_x_model .x ; vi .x ; }
 vik()	{ vi ./.k; }
@@ -150,6 +151,7 @@ catx()	{ cat ./.x; }
 catk()	{ cat ./.k; }
 x()	{ [ -f .x ] && source .x $@; }
 k()	{ [ -f .k ] && source .k $@; }
+sw()	{ sed -i 's:^CURRENTWD=.*:CURRENTWD='$(pwd)':' $BASH_SOURCE; source $BASH_SOURCE; }
 alias e='x e'
 alias xb='x b'
 alias xc='x c'
@@ -223,28 +225,7 @@ export PROMPT_COMMAND='PS1=$(echo "[\h] $(pwd) > ";)'
 }
 
 ####################################################################
-# Kubernetes
-
-# New aliases
-alias	kube.reset='kubeadm reset'
-alias	kube.join='kubeadm join ${KUBE_MASTER_IP}:6443 --token ${TOKEN} --discovery-token-ca-cert-hash sha256:${CACERTHASH}'
-kl()	{ kubectl get nodes,all,pv,pvc,ep,rs 2>/dev/null|sed "s/^/\t/"|sed "s/^\tNAME/>>\n\tNAME/"; echo; }
-alias	kc=/usr/bin/kubectl
-alias	k.conf='kubectl config view'
-alias	k.get.all='kubectl get nodes,all,pv,pvc,ep'
-alias	k.get.pods='kubectl get pods --all-namespaces'
-alias	k.get.api.resources='kubectl api-resources'
-alias	k.describe='kubectl describe'
-alias	k.get.services='kubectl get services --sort-by=.metadata.name'
-alias	k.get.events='kubectl get events'
-
-# This takes a couple of seconds to load.
-[ -f /usr/bin/kubectl ] && {
-	. <(kubectl completion bash)
-	complete -F __start_kubectl kc
-}
-
-####################################################################
 # Changedir aliases
 
 alias g='cd ~/git'
+alias w='cd '${CURRENTWD}

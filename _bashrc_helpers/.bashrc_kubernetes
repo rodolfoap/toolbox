@@ -1,0 +1,108 @@
+[ "$BDEBUG" == 1 ] && echo LOADING $BASH_SOURCE...
+
+####################################################################
+# Kubernetes
+
+# New aliases
+kl()	{ kubectl get all -o wide|sed "s/^/\t/"|sed "s/^\tNAME/>>\tNAME/"; echo; }
+kll()	{ kubectl get secret,cm,pv,pvc,ingress -o wide|sed "s/^/\t/"|sed "s/^\tNAME/>>\tNAME/"; echo; }
+
+kla()	{ kubectl get all --all-namespaces -o wide|sed "s/^/\t/"|sed "s/^\tNAME/>>\tNAME/"; echo; }
+klaa()	{ kubectl get all,secret,cm,pv,pvc,ingress --all-namespaces -o wide|sed "s/^/\t/"|sed "s/^\tNAME/>>\tNAME/"|less; }
+
+# Primitives
+alias	k.create='kc create -f'
+alias	k.apply='kubectl apply -f'
+alias	k.delete='kubectl delete -f'
+alias	k.describe='kubectl describe'
+alias	k.edit='kubectl edit'
+alias	k.get='kubectl get -o wide'
+alias	k.get.all='kubectl get all -o wide --all-namespaces'
+
+# Examples
+alias	k.ns.create='kubectl create namespace'
+alias	k.events='kubectl get events'
+alias	k.deployment='kubectl get deployment'
+alias	k.deployment.all='kubectl get deployment --all-namespaces'
+alias	k.services='kubectl get services --sort-by=.metadata.name'
+
+# Operation
+alias	kube.reset='kubeadm reset'
+alias	kube.join='kubeadm join 192.168.1.91:6443 --token aohhj9.y72ol4y8qxvyr0ws --discovery-token-ca-cert-hash sha256:417abe52a2ea3a791988dd2f3a43644fc008d7e0fe584f8ec61c3fa7d31de3af'
+alias	kc=/usr/bin/kubectl
+alias	k.api.resources='kubectl api-resources'
+k.bash.img(){ kc run -it --rm $1 --image=$1 --restart=Never -- /bin/sh; }
+alias	k.config='kubectl config view'
+alias	k.config.file='cat ~/.kube/config'
+k.ctx() { echo List:; kubectl config get-contexts|sed 's/^/\t/'; kubectx|sed 's/^/\t/'; echo Current:; kubectl config current-context|sed 's/^/\t/'; }
+alias	k.ctx.use='kubectl config use-context'
+alias	k.logs='kubectl logs'
+alias	k.ns.set='kubectl config set-context --current --namespace'
+k.ns()	{ kubectl get namespace; echo Current: $(kubectl config view --minify|grep namespace|awk '{print $2}'); }
+alias	k.nodes='kubectl get nodes'
+alias	pod='kubectl get pods -o wide --show-labels'
+alias	pod.edit='kubectl edit pod'
+alias	pod.delete='kubectl delete pod'
+alias	pod.describe='kubectl describe pod'
+pod.bash(){ kc exec -it pod/$1 -- /bin/sh; }
+alias	pods='kubectl get pods -o wide --show-labels --all-namespaces'
+alias	pods.yaml='kubectl get pods --all-namespaces -o yaml'
+k.sh() { kc exec -it $1 -- /bin/sh; }
+
+# Health checking
+alias 	k.health.check='kubectl get --raw="/readyz?verbose"'
+alias 	k.cluster.check="kubectl cluster-info dump"
+
+# Help
+k.help() { [ "$1" == '-e' ] && vi ~/.k8shelp || cat ~/.k8shelp; }
+k.help.run(){ cat << EOF
+	kc run --help
+	kc run nginx --image=nginx
+		--port=80
+		--dry-run=client
+		--restart=Never
+		--image-pull-policy=Never
+		--env="KEY1=val1" --env="KEY2=val2"
+		--labels=env=prod,team=storage
+		--overrides='{"spec":{"securityContext":{"fsGroup":3000}}}'
+		--overrides='{"spec":{"containers":[{"name":"VOID","image":"VOID","volumeMounts":[{"name":"datavol","mountPath":"/var/data"}]}], "volumes":[{"name":"datavol","emptyDir":{}}]}}'
+		-- /bin/sh -c 'sleep 5;'
+		--dry-run=client -o yaml > pod.yaml
+	k.create pod.yaml
+EOF
+}
+k.help.deployment(){ cat << EOF
+	kc create deployment --help
+	kc create deployment nginx-replicaset --image=nginx --replicas=3 --dry-run=client --port=80 -o yaml > deployment.yaml
+	k.create deployment.yaml
+EOF
+}
+k.help.cronjob(){ cat << EOF
+	kc create cronjob --help
+	kc create cronjob current-date --schedule="* * * * *" --image=nginx --dry-run=client -o yaml -- /bin/sh -c 'echo "Current date: $(date)"' > cronjob.yaml
+	k.create cronjob.yaml
+EOF
+}
+k.help.service(){ cat << EOF
+	kc create service --help
+	kc create service clusterip myapp --tcp=80:80 --dry-run=client -o yaml > service.yaml
+	k.create service.yaml
+EOF
+}
+k.help.scale(){ cat << EOF
+	kc scale --help
+	kc scale deployment myapp --replicas=2
+EOF
+}
+alias mk.env='eval $(minikube docker-env)'
+alias mk.ssh='minikube ssh'
+alias mk.dashboard='minikube dashboard'
+alias mk.start='minikube start'
+alias mk.stop='minikube stop'
+alias mk='minikube'
+
+# This takes a couple of seconds to load.
+[ -f /usr/bin/kubectl ] && {
+	. <(kubectl completion bash)
+	complete -F __start_kubectl kc
+}
