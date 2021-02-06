@@ -5,10 +5,14 @@
 
 # New aliases
 kl()	{ kubectl get all -o wide|sed "s/^/\t/"|sed "s/^\tNAME/>>\tNAME/"; echo; }
-kll()	{ kubectl get secret,cm,pv,pvc,ingress -o wide|sed "s/^/\t/"|sed "s/^\tNAME/>>\tNAME/"; echo; }
+kll()	{ kubectl get all,secret,cm,pv,pvc,ingress -o wide|sed "s/^/\t/"|sed "s/^\tNAME/>>\tNAME/"; echo; }
+klw()	{ watch -n0.1 'kubectl get all,secret,cm -o wide'; }
 
 kla()	{ kubectl get all --all-namespaces -o wide|sed "s/^/\t/"|sed "s/^\tNAME/>>\tNAME/"; echo; }
-klaa()	{ kubectl get all,secret,cm,pv,pvc,ingress --all-namespaces -o wide|sed "s/^/\t/"|sed "s/^\tNAME/>>\tNAME/"|less; }
+klaa()	{ kubectl get all,secret,cm,pv,pvc,ingress --all-namespaces -o wide|sed "s/^/\t/"|sed "s/^\tNAME/>>\tNAME/"; echo; }
+
+kx()	{ kubectl exec -it pod/${1##*/} -- /bin/sh; }
+kxi()	{ kubectl run -it --rm $(echo $1|sed -r 's|.*/([^/:]*):*[^:]*$|\1|') --image="$1" --restart=Never -- /bin/sh; }
 
 # Primitives
 alias	k.create='kc create -f'
@@ -29,14 +33,14 @@ alias	k.services='kubectl get services --sort-by=.metadata.name'
 # Operation
 alias	kube.reset='kubeadm reset'
 alias	kube.join='kubeadm join 192.168.1.91:6443 --token aohhj9.y72ol4y8qxvyr0ws --discovery-token-ca-cert-hash sha256:417abe52a2ea3a791988dd2f3a43644fc008d7e0fe584f8ec61c3fa7d31de3af'
-alias	kc=/usr/bin/kubectl
+alias	kc=kubectl
 alias	k.api.resources='kubectl api-resources'
-k.bash.img(){ kc run -it --rm $1 --image=$1 --restart=Never -- /bin/sh; }
 alias	k.config='kubectl config view'
 alias	k.config.file='cat ~/.kube/config'
 k.ctx() { echo List:; kubectl config get-contexts|sed 's/^/\t/'; kubectx|sed 's/^/\t/'; echo Current:; kubectl config current-context|sed 's/^/\t/'; }
 alias	k.ctx.use='kubectl config use-context'
-alias	k.logs='kubectl logs'
+alias	k.log='kubectl logs'
+alias	klog='k.log -f'
 alias	k.ns.set='kubectl config set-context --current --namespace'
 k.ns()	{ kubectl get namespace; echo Current: $(kubectl config view --minify|grep namespace|awk '{print $2}'); }
 alias	k.nodes='kubectl get nodes'
@@ -44,7 +48,6 @@ alias	pod='kubectl get pods -o wide --show-labels'
 alias	pod.edit='kubectl edit pod'
 alias	pod.delete='kubectl delete pod'
 alias	pod.describe='kubectl describe pod'
-pod.bash(){ kc exec -it pod/$1 -- /bin/sh; }
 alias	pods='kubectl get pods -o wide --show-labels --all-namespaces'
 alias	pods.yaml='kubectl get pods --all-namespaces -o yaml'
 k.sh() { kc exec -it $1 -- /bin/sh; }
@@ -94,12 +97,25 @@ k.help.scale(){ cat << EOF
 	kc scale deployment myapp --replicas=2
 EOF
 }
+alias mk='minikube'
 alias mk.env='eval $(minikube docker-env)'
 alias mk.ssh='minikube ssh'
 alias mk.dashboard='minikube dashboard'
-alias mk.start='minikube start'
+alias mk.status='minikube status'
 alias mk.stop='minikube stop'
-alias mk='minikube'
+alias mk.services='mk service list'
+mk.start(){
+	export MINIKUBE_IN_STYLE=false;
+	#docker run -d --rm -p 80:5000 --name registry -v /opt/docker/registry/:/var/lib/registry registry:2
+	minikube start --cpus 10 --memory 13g --mount --mount-string /nfs:/nfs;
+}
+mk.zap()	{ mk.stop; mk delete; sleep 5; d.clean; mk.start; mk.tunnel; mk.status; }
+mk.tunnel()	{ minikube tunnel &> ~/.minikube.tunnel.log & }
+mk.login.gtd()	{
+	minikube ssh 'mkdir -p /home/docker/.docker'
+	scp -i $(minikube ssh-key) /home/rodolfoap/.docker/config.json docker@$(minikube ip):/home/docker/.docker/config.json
+	minikube ssh 'docker login registry.gtd-international.com'
+}
 
 # This takes a couple of seconds to load.
 [ -f /usr/bin/kubectl ] && {
