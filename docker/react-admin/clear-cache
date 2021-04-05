@@ -1,4 +1,0 @@
-#!/bin/bash
-
-read -p "A total of $(du -ch cache/ app/node_modules/|tail -1|awk '{print $1}') will be deleted. Confirm [y/n]: " CONFIRM
-[ "$CONFIRM" == y ] && { rm -rf app/node_modules/ cache/ app/package-lock.json app/*.lock; echo Done.; }

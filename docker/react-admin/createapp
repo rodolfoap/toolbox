@@ -1,5 +1,0 @@
-#!/bin/bash
-
-cd $1
-create-react-app .
-yarn add react-admin ra-data-json-server prop-types

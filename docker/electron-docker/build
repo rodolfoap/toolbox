@@ -1,9 +1,0 @@
-#!/bin/bash
-set -x
-git clone https://github.com/electron/electron-quick-start app || true
-docker build \
-	--build-arg UID=$(id -u) \
-	--build-arg GID=$(id -g) \
-	-t electron-docker \
-	-f Dockerfile \
-	.
