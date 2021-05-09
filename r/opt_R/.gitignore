@@ -1,0 +1,5 @@
+/.lib/
+*.csv
+*.jpg
+.RData
+.Rhistory

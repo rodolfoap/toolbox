@@ -1,0 +1,6 @@
+.libPaths('/opt/R/.lib')
+Sys.setenv(`_R_S3_METHOD_REGISTRATION_NOTE_OVERWRITES_` = "false")
+print('RAP config loaded.')
+options("getSymbols.warning4.0"=FALSE)
+options(warn=-1)
+options(max.print=50)
